@@ -8,6 +8,7 @@ import {
   MessageCircle, Download, Award, Sparkles,
 } from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { useToast } from '../components/Toast';
 import { FloatingCartButton } from '../components/FloatingCartButton';
 import { SedesMap } from '../components/SedesMap';
 import { findNearestSede } from '../utils/geo';
@@ -65,7 +66,8 @@ export const Home: React.FC<HomeProps> = ({
   onViewProductDetails, navigateToCatalog: _navigateToCatalog,
   onInstallClick, onAdminClick, isAdminAuthenticated
 }) => {
-  const { foodItems, config, cart, addToCart, getProductAverageRating, isDarkMode } = useApp();
+  const { foodItems, config, cart, addToCart, getProductAverageRating, isDarkMode, promotions } = useApp();
+  const { showToast } = useToast();
   const tc = config.theme_color || '#FF6B35';
 
   const activeItems = useMemo(() => foodItems.filter(p => p.activo !== false), [foodItems]);
@@ -85,6 +87,10 @@ export const Home: React.FC<HomeProps> = ({
   const panaderiaItems = useMemo(() => activeItems.filter(p => p.categoria.toLowerCase() === 'panaderia'), [activeItems]);
   const mercadoItems = useMemo(() => activeItems.filter(p => p.categoria.toLowerCase() === 'mercado'), [activeItems]);
   const comidaRapidaItems = useMemo(() => activeItems.filter(p => p.categoria.toLowerCase() === 'comida rapida'), [activeItems]);
+  const activePromotions = useMemo(() => {
+    const now = new Date().toISOString();
+    return (promotions || []).filter(p => p.status === 'active' && p.start_date <= now && p.end_date >= now);
+  }, [promotions]);
 
   const [heroSlide, setHeroSlide] = useState(0);
   const heroBanners = config.banners.slice(0, 3);
@@ -125,7 +131,7 @@ export const Home: React.FC<HomeProps> = ({
 
   const useMyLocation = useCallback(() => {
     if (!navigator.geolocation) {
-      alert('Tu navegador no soporta geolocalización. Elige una sucursal manualmente.');
+      showToast('warning', 'Tu navegador no soporta geolocalizacion. Elige una sucursal manualmente.');
       return;
     }
     navigator.geolocation.getCurrentPosition(
@@ -137,10 +143,10 @@ export const Home: React.FC<HomeProps> = ({
         }
         setShowSedeModal(false);
       },
-      () => { alert('No se pudo obtener tu ubicación. Elige una sucursal manualmente.'); },
+      () => { showToast('error', 'No se pudo obtener tu ubicacion. Elige una sucursal manualmente.'); },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
     );
-  }, [activeSedes]);
+  }, [activeSedes, showToast]);
 
   const [flashTimer, setFlashTimer] = useState({ h: 2, m: 45, s: 12 });
   useEffect(() => {
@@ -409,6 +415,39 @@ export const Home: React.FC<HomeProps> = ({
           </div>
         )}
       </section>
+
+      {/* ═══ PROMOCIONES ACTIVAS ═══ */}
+      {activePromotions.length > 0 && (
+        <section className="py-4 px-4 md:px-8 max-w-[1440px] mx-auto w-full">
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles size={16} style={{ color: tc }} />
+            <h3 className="text-lg font-bold" style={{ color: text1 }}>Promociones</h3>
+          </div>
+          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+            {activePromotions.map((promo) => (
+              <div key={promo.id} className="flex-shrink-0 w-72 rounded-2xl overflow-hidden border border-[#e4beb1]/10" style={{ background: cardBg }}>
+                {promo.image_url && (
+                  <img src={promo.image_url} alt={promo.title} className="w-full h-32 object-cover" />
+                )}
+                <div className="p-3">
+                  <h4 className="font-bold text-sm" style={{ color: text1 }}>{promo.title}</h4>
+                  <p className="text-xs mt-1" style={{ color: text2 }}>{promo.message}</p>
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: `${tc}20`, color: tc }}>
+                      {promo.discount_type === 'percent' ? `${promo.discount_value}% OFF` : promo.discount_type === 'fixed' ? `$${promo.discount_value} OFF` : promo.discount_type === '2x1' ? '2x1' : 'Combo'}
+                    </span>
+                    {promo.coupon_code && (
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
+                        {promo.coupon_code}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ═══ 3. OFERTAS FLASH ═══ */}
       {promoItems.length > 0 && (
@@ -1032,7 +1071,7 @@ export const Home: React.FC<HomeProps> = ({
                 <button
                   onClick={() => {
                     const url = `https://www.google.com/maps?q=${config.coordenadas_tienda?.lat || 0},${config.coordenadas_tienda?.lng || 0}`;
-                    navigator.clipboard.writeText(url).then(() => alert('Link copiado al portapapeles'));
+                    navigator.clipboard.writeText(url).then(() => showToast('success', 'Link copiado al portapapeles'));
                   }}
                   className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm border transition-all hover:opacity-90 active:scale-95 cursor-pointer"
                   style={{ borderColor: cardBorder, color: text1 }}

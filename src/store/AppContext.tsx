@@ -5,6 +5,7 @@ import { supabase } from './supabaseClient';
 interface AppContextProps {
   foodItems: FoodItem[];
   promotions: Promotion[];
+  setPromotions: React.Dispatch<React.SetStateAction<Promotion[]>>;
   orders: Order[];
   config: StoreConfig;
   coupons: Coupon[];
@@ -88,6 +89,7 @@ interface AppContextProps {
   
   // Flash Sales
   flashSales: FlashSale[];
+  updateFlashSales: (sales: FlashSale[]) => void;
   getActiveFlashSale: (productId: string) => FlashSale | null;
   
   // Loyalty
@@ -2247,6 +2249,40 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     });
     setCurrentUser(newUser);
 
+    // Aplicar welcome bonus de lealtad si esta habilitado
+    const loyaltyConfig = config.loyalty;
+    if (loyaltyConfig?.enabled && loyaltyConfig.welcome_bonus > 0 && authData.user?.id) {
+      const bonusPoints = loyaltyConfig.welcome_bonus;
+      const tx: LoyaltyTransaction = {
+        id: `loy-tx-welcome-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
+        user_id: authData.user.id,
+        type: 'earn',
+        points: bonusPoints,
+        description: 'Bonus de bienvenida',
+        created_at: new Date().toISOString(),
+      };
+      try {
+        await supabase.from('loyalty_transactions').insert({
+          user_id: tx.user_id,
+          type: tx.type,
+          points: tx.points,
+          description: tx.description,
+          sede_id: '',
+        });
+        await supabase.from('usuarios_clientes')
+          .update({ loyalty_points: bonusPoints, loyalty_lifetime_points: bonusPoints })
+          .eq('id', authData.user.id);
+      } catch (e) {
+        console.error('[Loyalty] Welcome bonus sync failed:', e);
+      }
+      setLoyaltyTransactions(prev => [...prev, tx]);
+      setUsers(prev => prev.map(u => {
+        if (u.id !== authData.user?.id) return u;
+        return { ...u, loyalty_points: bonusPoints, loyalty_lifetime_points: bonusPoints };
+      }));
+      setCurrentUser(prev => prev ? { ...prev, loyalty_points: bonusPoints, loyalty_lifetime_points: bonusPoints } : prev);
+    }
+
     addNotification(
       '¡Registro Exitoso! 🎉',
       `Hola ${newUser.nombre}. Te has registrado con éxito. Recuerda que con tu nombre, teléfono (${newUser.telefono}) y tu clave secreta podrás acceder siempre a tu panel de usuario.`,
@@ -2777,10 +2813,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       password: pass.trim()
     });
     if (error) {
-      alert('Error al actualizar credenciales: ' + error.message);
-    } else {
-      alert('Credenciales de acceso administrativo actualizadas correctamente en Supabase Auth.');
+      return { success: false, message: error.message };
     }
+    return { success: true, message: 'Credenciales de acceso administrativo actualizadas correctamente en Supabase Auth.' };
   };
 
   // --- LOYALTY / FIDELIZACIÓN ---
@@ -3091,6 +3126,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       // Keeping the exposed context API consistent with the rest of the app.
       foodItems: products,
       promotions,
+      setPromotions,
       orders,
       config,
       coupons,
@@ -3156,6 +3192,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       getProductReviews,
       getProductAverageRating,
       flashSales,
+      updateFlashSales: (sales: FlashSale[]) => setFlashSales(sales),
       getActiveFlashSale,
       loyaltyTransactions,
       earnLoyaltyPoints,

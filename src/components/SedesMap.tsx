@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MapPin, LocateFixed, Check } from 'lucide-react';
 import { Sede } from '../types/store';
 import { findNearestSede } from '../utils/geo';
+import { useToast } from './Toast';
 
 interface LeafletLatLng {
   lat: number;
@@ -37,6 +38,7 @@ interface SedesMapProps {
 }
 
 export const SedesMap: React.FC<SedesMapProps> = ({ sedes, selectedSedeId, onSelect, themeColor = '#10b981' }) => {
+  const { showToast } = useToast();
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<LeafletMap | null>(null);
   const markersRef = useRef<LeafletMarker[]>([]);
@@ -142,7 +144,7 @@ export const SedesMap: React.FC<SedesMapProps> = ({ sedes, selectedSedeId, onSel
 
   const locateMe = () => {
     if (!navigator.geolocation) {
-      alert('Tu navegador no soporta geolocalización.');
+      showToast('warning', 'Tu navegador no soporta geolocalizacion.');
       return;
     }
     setLocating(true);
@@ -157,7 +159,7 @@ export const SedesMap: React.FC<SedesMapProps> = ({ sedes, selectedSedeId, onSel
         }
         setLocating(false);
       },
-      () => { setLocating(false); alert('No se pudo obtener tu ubicación.'); },
+      () => { setLocating(false); showToast('error', 'No se pudo obtener tu ubicacion.'); },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
     );
   };

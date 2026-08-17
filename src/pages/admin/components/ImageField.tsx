@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { uploadFileToStorage, compressImage } from '../../../store/supabaseClient';
+import { useToast } from '../../../components/Toast';
 import { Image, Upload, Link, X } from 'lucide-react';
 
 interface ImageFieldProps {
@@ -28,6 +29,7 @@ const ImageField: React.FC<ImageFieldProps> = ({
   const [uploading, setUploading] = useState(false);
   const [urlInput, setUrlInput] = useState(value || '');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { showToast } = useToast();
 
   const previewSizes = { sm: 'w-10 h-10', md: 'w-16 h-16', lg: 'w-24 h-24' };
 
@@ -38,11 +40,11 @@ const ImageField: React.FC<ImageFieldProps> = ({
     try {
       const compressed = await compressImage(file, { maxWidth: maxSize, format });
       const ext = format === 'image/webp' ? 'webp' : format === 'image/jpeg' ? 'jpg' : 'png';
-      const url = await uploadFileToStorage(compressed, bucket, `${folder}/${Date.now()}.${ext}`);
+      const url = await uploadFileToStorage(compressed, bucket, `${folder}/${crypto.randomUUID()}.${ext}`);
       onChange(url);
       setUrlInput(url);
     } catch (err: unknown) {
-      alert('Error al subir imagen: ' + (err instanceof Error ? err.message : String(err)));
+      showToast('error', 'Error al subir imagen: ' + (err instanceof Error ? err.message : String(err)));
     }
     setUploading(false);
     if (e.target) e.target.value = '';

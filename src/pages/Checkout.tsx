@@ -254,8 +254,19 @@ export const Checkout: React.FC<CheckoutProps> = ({ setTab, onClose }) => {
     return acc + ((ci.item.precio_usd + extrasTotal) * ci.quantity);
   }, 0);
   const effectiveShippingCost = hasFreeDeliveryItem ? 0 : shippingCost;
-  const discountFromCoupon = appliedCoupon ? (subtotalUsd * (appliedCoupon.discount_percent / 100)) : 0;
-  const totalUsd = subtotalUsd - discountFromCoupon + effectiveShippingCost;
+  let discountFromCoupon = 0;
+  if (appliedCoupon) {
+    const couponType = appliedCoupon.coupon_type || 'percentage';
+    if (couponType === 'fixed') {
+      discountFromCoupon = Math.min(appliedCoupon.discount_amount || 0, subtotalUsd);
+    } else if (couponType === 'free_shipping') {
+      discountFromCoupon = 0;
+    } else {
+      discountFromCoupon = subtotalUsd * (appliedCoupon.discount_percent / 100);
+    }
+  }
+  const effectiveShippingAfterCoupon = (appliedCoupon?.coupon_type === 'free_shipping') ? 0 : effectiveShippingCost;
+  const totalUsd = subtotalUsd - discountFromCoupon + effectiveShippingAfterCoupon;
   const totalBs = totalUsd * config.tasa_cambio;
 
   const handleShippingMethodChange = (method: 'mapa' | 'recogida' | 'zonas') => {
@@ -305,9 +316,10 @@ export const Checkout: React.FC<CheckoutProps> = ({ setTab, onClose }) => {
   const handleApplyCoupon = () => {
     setCouponError('');
     const found = coupons.find(c => c.code === couponInput.toUpperCase().trim());
-    if (!found) { setCouponError('Cupón no válido'); return; }
-    if (!found.active) { setCouponError('Este cupón ya no está activo'); return; }
-    if (found.usage_limit && found.usage_count >= found.usage_limit) { setCouponError('Este cupón ha agotado sus usos'); return; }
+    if (!found) { setCouponError('Cupon no valido'); return; }
+    if (!found.active) { setCouponError('Este cupon ya no esta activo'); return; }
+    if (found.usage_limit && found.usage_count >= found.usage_limit) { setCouponError('Este cupon ha agotado sus usos'); return; }
+    if (found.min_purchase && subtotalUsd < found.min_purchase) { setCouponError(`Compra minima: $${found.min_purchase.toFixed(2)}`); return; }
     setAppliedCoupon(found);
     setCouponInput('');
     setShowCelebration(true);
@@ -409,7 +421,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ setTab, onClose }) => {
 *Telefono:* ${cleanedPhone}
 ${clientEmail ? `*Correo:* ${clientEmail}\n` : ''}*Direccion de Entrega:* ${shippingZone}
 *Ubicacion Mapa:* https://www.google.com/maps?q=${shippingLat},${shippingLng}
-*Metodo Despacho:* ${deliveryLabel} - Costo: $${effectiveShippingCost.toFixed(2)}
+*Metodo Despacho:* ${deliveryLabel} - Costo: $${effectiveShippingAfterCoupon.toFixed(2)}
 
 *Detalle del Carrito:*
 ${productosDetailText}
@@ -436,7 +448,7 @@ ${productosDetailText}
         ingredientes_removidos: ci.ingredientes_removidos || []
       })),
       tipo_entrega: shippingMethod === 'recogida' ? 'pickup' : 'delivery',
-      costo_envio_usd: effectiveShippingCost,
+      costo_envio_usd: effectiveShippingAfterCoupon,
       descuento_cupon_usd: discountFromCoupon,
       cupon_codigo: appliedCoupon?.code,
       metodo_pago: selectedPayment,
@@ -714,7 +726,7 @@ ${productosDetailText}
                             </p>
                             {isLocationSet ? (
                               <p className="text-[10px] text-[#8f7065] truncate mt-0.5">
-                                {shippingZone} · {shippingDistance.toFixed(1)} km · ${effectiveShippingCost.toFixed(2)}
+                                {shippingZone} · {shippingDistance.toFixed(1)} km · ${effectiveShippingAfterCoupon.toFixed(2)}
                               </p>
                             ) : (
                               <p className="text-[10px] text-[#8f7065] mt-0.5">Toca para abrir el mapa y elegir tu dirección</p>
@@ -792,7 +804,7 @@ ${productosDetailText}
                     <div className="mt-4 flex justify-between items-center pt-3 border-t border-[#e4beb1]/10">
                       <span className="text-xs text-[#8f7065]">Envío:</span>
                       <span className="text-xs font-bold" style={{ color: themeColor }}>
-                        {hasFreeDeliveryItem ? 'GRATIS' : effectiveShippingCost === 0 ? 'Retiro / Gratis' : `$${effectiveShippingCost.toFixed(2)}`}
+                        {hasFreeDeliveryItem ? 'GRATIS' : appliedCoupon?.coupon_type === 'free_shipping' ? 'GRATIS (Cupon)' : effectiveShippingAfterCoupon === 0 ? 'Retiro / Gratis' : `$${effectiveShippingAfterCoupon.toFixed(2)}`}
                       </span>
                     </div>
                   </div>
@@ -846,7 +858,7 @@ ${productosDetailText}
                     {couponError && <span className="text-[11px] text-red-500 mt-1 block">{couponError}</span>}
                     {appliedCoupon && (
                       <p className="text-xs font-bold mt-2" style={{ color: themeColor }}>
-                        ✓ "{appliedCoupon.code}" aplicado: -{appliedCoupon.discount_percent}%
+                        ✓ "{appliedCoupon.code}" aplicado: {appliedCoupon.coupon_type === 'fixed' ? `-$${appliedCoupon.discount_amount}` : appliedCoupon.coupon_type === 'free_shipping' ? 'Envio Gratis' : `-${appliedCoupon.discount_percent}%`}
                       </p>
                     )}
                   </div>
@@ -882,13 +894,13 @@ ${productosDetailText}
                   </div>
                   {appliedCoupon && (
                     <div className="flex justify-between text-xs" style={{ color: themeColor }}>
-                      <span>Descuento (-{appliedCoupon.discount_percent}%):</span>
-                      <span className="font-bold">-${discountFromCoupon.toFixed(2)}</span>
+                      <span>Descuento ({appliedCoupon.coupon_type === 'fixed' ? `-$${appliedCoupon.discount_amount}` : appliedCoupon.coupon_type === 'free_shipping' ? 'Envio Gratis' : `-${appliedCoupon.discount_percent}%`}):</span>
+                      <span className="font-bold">{appliedCoupon.coupon_type === 'free_shipping' ? 'Envio Gratis' : `-$${discountFromCoupon.toFixed(2)}`}</span>
                     </div>
                   )}
                   <div className="flex justify-between text-xs">
                     <span className="text-[#8f7065]">Envío ({shippingMethod === 'recogida' ? 'Recogida' : shippingZone}):</span>
-                    <span className="font-bold">{effectiveShippingCost === 0 ? 'Gratis' : `$${effectiveShippingCost.toFixed(2)}`}</span>
+                    <span className="font-bold">{appliedCoupon?.coupon_type === 'free_shipping' ? 'Gratis (Cupon)' : effectiveShippingAfterCoupon === 0 ? 'Gratis' : `$${effectiveShippingAfterCoupon.toFixed(2)}`}</span>
                   </div>
                   <div className="flex justify-between text-sm pt-2 border-t border-[#e4beb1]/10">
                     <span className="font-bold text-[#1a1c1d]">Total:</span>

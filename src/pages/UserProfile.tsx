@@ -8,6 +8,7 @@ import {
   Copy, Check, X, Smartphone, MessageSquare, Send, ExternalLink, Trash2, Star, Award, Gift
 } from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { useToast } from '../components/Toast';
 import { OrderTracker } from '../components/OrderTracker';
 import { getWhatsAppPhone } from '../utils/phone';
 import { InAppNotification } from '../types/store';
@@ -26,12 +27,13 @@ interface CredentialsReminder {
 }
 
 interface UserProfileProps {
-  setTab: (tab: 'home' | 'catalog' | 'cart' | 'admin' | 'profile') => void;
+  setTab: (tab: 'home' | 'catalog' | 'cart' | 'admin' | 'profile' | 'checkout') => void;
   deferredPrompt?: BeforeInstallPromptEvent | null;
   onInstallClick?: () => void;
 }
 
 export const UserProfile: React.FC<UserProfileProps> = ({ setTab, deferredPrompt, onInstallClick }) => {
+  const { showToast } = useToast();
   const { 
     currentUser, 
     orders, 
@@ -198,6 +200,8 @@ export const UserProfile: React.FC<UserProfileProps> = ({ setTab, deferredPrompt
 
   const [directMsg, setDirectMsg] = useState('');
   const [selectedNotification, setSelectedNotification] = useState<InAppNotification | null>(null);
+  const [deleteAllConfirm, setDeleteAllConfirm] = useState(false);
+  const [deleteSingleConfirm, setDeleteSingleConfirm] = useState<string | null>(null);
 
   const handleCopyText = (text: string, type: 'name' | 'phone' | 'password' | 'all') => {
     navigator.clipboard.writeText(text);
@@ -1006,10 +1010,19 @@ export const UserProfile: React.FC<UserProfileProps> = ({ setTab, deferredPrompt
                 ) : (
                   <>
                     <div className="flex justify-end px-4 mb-1">
-                      <button onClick={() => { if (confirm('¿Borrar todos los mensajes?')) clearAllNotifications(); }} className="flex items-center gap-1 text-[11px] text-red-500 font-bold">
+                      <button onClick={() => setDeleteAllConfirm(true)} className="flex items-center gap-1 text-[11px] text-red-500 font-bold">
                         <Trash2 size={11} /> Borrar todo
                       </button>
                     </div>
+                    {deleteAllConfirm && (
+                      <div className="mx-4 mb-2 p-3 bg-red-50 border border-red-200 rounded-xl flex items-center justify-between gap-2">
+                        <span className="text-xs text-red-700">Borrar todos los mensajes?</span>
+                        <div className="flex gap-1">
+                          <button onClick={() => { clearAllNotifications(); setDeleteAllConfirm(false); }} className="text-[10px] font-bold text-white bg-red-500 px-3 py-1.5 rounded-lg">Si</button>
+                          <button onClick={() => setDeleteAllConfirm(false)} className="text-[10px] font-bold text-red-500 bg-red-100 px-3 py-1.5 rounded-lg">No</button>
+                        </div>
+                      </div>
+                    )}
                     {userNotifications.map((notif) => {
                       const isFromStore = notif.tipo === 'todos' || notif.tipo === 'personal';
                       return (
@@ -1118,7 +1131,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ setTab, deferredPrompt
                         <span className="text-[10px] text-[#8f7065] font-mono">Válido hasta {new Date(promo.end_date).toLocaleDateString('es-VE')}</span>
                         {promo.coupon_code && (
                           <button
-                            onClick={() => { navigator.clipboard.writeText(promo.coupon_code!); alert('Cupón copiado: ' + promo.coupon_code); }}
+                            onClick={() => { navigator.clipboard.writeText(promo.coupon_code!); showToast('success', 'Coupon copiado: ' + promo.coupon_code); }}
                             className="flex items-center gap-1 text-[11px] font-bold px-3 py-1.5 rounded-lg border transition-all active:scale-95"
                             style={{ borderColor: themeColor, color: themeColor }}
                           >
@@ -1167,7 +1180,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ setTab, deferredPrompt
                         <p className="text-[10px] text-[#8f7065] font-mono">Válido hasta {new Date(coupon.valid_until).toLocaleDateString('es-VE')}</p>
                       )}
                       <button
-                        onClick={() => { navigator.clipboard.writeText(coupon.code); alert('Cupón copiado: ' + coupon.code); }}
+                        onClick={() => { navigator.clipboard.writeText(coupon.code); showToast('success', 'Coupon copiado: ' + coupon.code); }}
                         className="w-full text-white font-bold py-2.5 rounded-xl text-[12px] transition-all active:scale-[0.98] flex items-center justify-center gap-1.5"
                         style={{ backgroundColor: themeColor }}
                       >
@@ -1243,8 +1256,8 @@ export const UserProfile: React.FC<UserProfileProps> = ({ setTab, deferredPrompt
                           onClick={async () => {
                             if (canRedeem) {
                               const ok = await redeemRewardItem(currentUser.id, reward.id);
-                              if (ok) alert(`¡Canjeaste "${reward.name}" por ${reward.points_cost} puntos!`);
-                              else alert('No se pudo completar el canje.');
+                              if (ok) showToast('success', `Canjeaste "${reward.name}" por ${reward.points_cost} puntos!`);
+                              else showToast('error', 'No se pudo completar el canje.');
                             }
                           }}
                           disabled={!canRedeem}
@@ -1376,17 +1389,24 @@ export const UserProfile: React.FC<UserProfileProps> = ({ setTab, deferredPrompt
                 )}
                 <button
                   type="button"
-                  onClick={() => {
-                    if (confirm('¿Seguro que deseas borrar este mensaje?')) {
-                      deleteNotification(selectedNotification.id);
-                      setSelectedNotification(null);
-                    }
-                  }}
+                  onClick={() => setDeleteSingleConfirm(selectedNotification.id)}
                   className="flex-1 bg-white hover:bg-[#f9f9fb] border border-[#e4beb1]/10 text-rose-600 font-bold py-2.5 px-3 rounded-lg text-[11px] transition-colors cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2"
                 >
                   <Trash2 size={14} /> Borrar
                 </button>
               </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {deleteSingleConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#09090b]/80 backdrop-blur-md animate-fade-in">
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-white rounded-3xl shadow-2xl p-6 w-full max-w-sm text-center">
+            <p className="text-sm text-[#4a3728] font-semibold mb-4">Borrar este mensaje?</p>
+            <div className="flex gap-2">
+              <button onClick={() => { deleteNotification(deleteSingleConfirm); setSelectedNotification(null); setDeleteSingleConfirm(null); }} className="flex-1 bg-red-500 text-white font-bold py-2.5 rounded-xl text-xs">Si, borrar</button>
+              <button onClick={() => setDeleteSingleConfirm(null)} className="flex-1 bg-gray-100 text-[#4a3728] font-bold py-2.5 rounded-xl text-xs">Cancelar</button>
             </div>
           </motion.div>
         </div>

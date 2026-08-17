@@ -1,6 +1,16 @@
 import { create } from 'zustand';
 
-type AdminSection = 'reports' | 'orders' | 'tracking' | 'inventory' | 'tables' | 'customers' | 'coupons' | 'settings' | 'branding' | 'sedes' | 'extras' | 'notifications' | 'chat' | 'promos' | 'combos' | 'loyalty' | 'tienda' | 'roles' | 'marketing';
+type AdminSection =
+  // Reportes
+  | 'dashboard' | 'sales-report' | 'products-report' | 'app-report' | 'analytics'
+  // Pedidos
+  | 'orders' | 'order-history' | 'delivery-map'
+  // Marketing
+  | 'customers' | 'messages' | 'promos' | 'coupons' | 'loyalty' | 'segments' | 'automations' | 'push-analytics'
+  // Tienda
+  | 'store-general' | 'products' | 'store-promos' | 'store-combos' | 'delivery' | 'payments' | 'banners' | 'categories'
+  // Configuración
+  | 'branding' | 'pwa-config' | 'seo' | 'branches' | 'roles' | 'system' | 'extras' | 'faq';
 
 interface AdminState {
   activeSection: AdminSection;
@@ -18,7 +28,7 @@ interface AdminState {
 }
 
 export const useAdminStore = create<AdminState>((set) => ({
-  activeSection: 'reports',
+  activeSection: 'dashboard',
   sidebarOpen: false,
   orderFilter: 'all',
   crudSearch: '',

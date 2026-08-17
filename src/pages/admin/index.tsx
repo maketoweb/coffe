@@ -2,31 +2,60 @@ import React, { Suspense, lazy, useState, useCallback } from 'react';
 import { useApp } from '../../store/AppContext';
 import { useAdminStore } from '../../store/stores/adminStore';
 import { useOrders } from './hooks/useOrders';
-import { Order, FoodItem, AppUser } from '../../types/store';
+import { Order, FoodItem } from '../../types/store';
 import {
-  BarChart3, ShoppingBag, Utensils, Grid, User, Ticket, Settings,
-  X, Bell, MessageSquare, Megaphone, Package, Award,
-  LayoutGrid, ChevronLeft, MapPin, Shield, Store
+  BarChart3, ShoppingBag, Utensils, User, Ticket, Settings,
+  X, MessageSquare, Megaphone, Package, Award,
+  LayoutGrid, ChevronLeft, MapPin, Shield, Store,
+  TrendingUp, Smartphone, Activity, Clock, Users, Zap, Tag,
+  Truck, CreditCard, Image, Grid, Search, Building2, HelpCircle,
+  Sliders, Palette, FileText, Send
 } from 'lucide-react';
 import { SEOHead } from '../../components/SEOHead';
-import { EditProductForm } from '../../components/EditProductForm';
+import ProductoFormSection from './sections/tienda/ProductoFormSection';
+import SidebarNav from './components/SidebarNav';
 
-const DashboardSection = lazy(() => import('./sections/DashboardSection'));
-const OrdersSection = lazy(() => import('./sections/OrdersSection'));
-const InventorySection = lazy(() => import('./sections/InventorySection'));
-const TablesSection = lazy(() => import('./sections/TablesSection'));
-const CustomersSection = lazy(() => import('./sections/CustomersSection'));
-const CouponsSection = lazy(() => import('./sections/CouponsSection'));
-const SettingsSection = lazy(() => import('./sections/SettingsSection'));
-const NotificationsSection = lazy(() => import('./sections/NotificationsSection'));
-const ChatSection = lazy(() => import('./sections/ChatSection'));
-const PromosSection = lazy(() => import('./sections/PromosSection'));
-const CombosSection = lazy(() => import('./sections/CombosSection'));
-const LoyaltySection = lazy(() => import('./sections/LoyaltySection'));
-const TiendaSection = lazy(() => import('./sections/TiendaSection'));
-const TrackingSection = lazy(() => import('./sections/TrackingSection'));
-const RolesSection = lazy(() => import('./sections/RolesSection'));
-const MarketingSection = lazy(() => import('./sections/MarketingSection'));
+// ── Lazy Imports: Reportes ──
+const ResumenGeneralSection = lazy(() => import('./sections/reports/ResumenGeneralSection'));
+const VentasReportSection = lazy(() => import('./sections/reports/VentasReportSection'));
+const ProductosReportSection = lazy(() => import('./sections/reports/ProductosReportSection'));
+const AppReportSection = lazy(() => import('./sections/reports/AppReportSection'));
+const EstadisticasSection = lazy(() => import('./sections/reports/EstadisticasSection'));
+
+// ── Lazy Imports: Pedidos ──
+const ComandasSection = lazy(() => import('./sections/pedidos/ComandasSection'));
+const HistorialPedidosSection = lazy(() => import('./sections/pedidos/HistorialPedidosSection'));
+const MapaDeliverySection = lazy(() => import('./sections/pedidos/MapaDeliverySection'));
+
+// ── Lazy Imports: Marketing ──
+const ClientesSection = lazy(() => import('./sections/marketing/ClientesSection'));
+const MensajesSection = lazy(() => import('./sections/marketing/MensajesSection'));
+const PromocionesSection = lazy(() => import('./sections/marketing/PromocionesSection'));
+const CuponesSection = lazy(() => import('./sections/marketing/CuponesSection'));
+const FidelizacionSection = lazy(() => import('./sections/marketing/FidelizacionSection'));
+const SegmentacionSection = lazy(() => import('./sections/marketing/SegmentacionSection'));
+const AutomatizacionSection = lazy(() => import('./sections/marketing/AutomatizacionSection'));
+const AnalyticsPushSection = lazy(() => import('./sections/marketing/AnalyticsPushSection'));
+
+// ── Lazy Imports: Tienda ──
+const StoreGeneralSection = lazy(() => import('./sections/tienda/StoreGeneralSection'));
+const ProductosSection = lazy(() => import('./sections/tienda/ProductosSection'));
+const OfertasSection = lazy(() => import('./sections/tienda/OfertasSection'));
+const TiendaCombosSection = lazy(() => import('./sections/tienda/CombosSection'));
+const DeliverySection = lazy(() => import('./sections/tienda/DeliverySection'));
+const PaymentsSection = lazy(() => import('./sections/tienda/PaymentsSection'));
+const BannersSection = lazy(() => import('./sections/tienda/BannersSection'));
+const CategoriasSection = lazy(() => import('./sections/tienda/CategoriasSection'));
+
+// ── Lazy Imports: Configuración ──
+const PersonalizacionSection = lazy(() => import('./sections/config/PersonalizacionSection'));
+const PWASection = lazy(() => import('./sections/config/PWASection'));
+const SEOSection = lazy(() => import('./sections/config/SEOSection'));
+const SucursalesSection = lazy(() => import('./sections/config/SucursalesSection'));
+const RolesSection = lazy(() => import('./sections/config/RolesSection'));
+const SistemaSection = lazy(() => import('./sections/config/SistemaSection'));
+const ExtrasGlobalesSection = lazy(() => import('./sections/config/ExtrasGlobalesSection'));
+const FAQSection = lazy(() => import('./sections/config/FAQSection'));
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-20">
@@ -38,74 +67,95 @@ const SectionLoader = () => (
 );
 
 interface AdminIndexProps {
-  setTab: (tab: 'home' | 'catalog' | 'cart' | 'admin') => void;
+  setTab: (tab: 'home' | 'catalog' | 'cart' | 'admin' | 'profile' | 'checkout') => void;
 }
 
+// ── Section Registry (new structure) ──
 const ALL_SECTIONS = [
-  { id: 'reports',      label: 'Panel',          icon: BarChart3,        group: 'principal' },
-  { id: 'orders',       label: 'Pedidos',        icon: ShoppingBag,      group: 'principal' },
-  { id: 'tracking',     label: 'Rastreo',        icon: MapPin,           group: 'principal' },
-  { id: 'inventory',    label: 'Menú',           icon: Utensils,         group: 'principal' },
-  { id: 'promos',       label: 'Ofertas',        icon: Megaphone,        group: 'principal' },
-  { id: 'combos',       label: 'Combos',         icon: Package,          group: 'principal' },
-  { id: 'tables',       label: 'Mesas',          icon: Grid,             group: 'principal' },
-  { id: 'loyalty',      label: 'Fidelización',   icon: Award,            group: 'clientes' },
-  { id: 'customers',    label: 'Clientes',       icon: User,             group: 'clientes' },
-  { id: 'chat',         label: 'Mensajes',       icon: MessageSquare,    group: 'clientes' },
-  { id: 'notifications',label: 'Avisos',         icon: Bell,             group: 'comunicacion' },
-  { id: 'marketing',    label: 'Marketing',      icon: Megaphone,        group: 'comunicacion' },
-  { id: 'tienda',       label: 'Tienda',         icon: Store,            group: 'contenido', adminOnly: true },
-  { id: 'coupons',      label: 'Cupones',        icon: Ticket,           group: 'contenido' },
-  { id: 'roles',        label: 'Roles',          icon: Shield,           group: 'sistema', adminOnly: true },
-  { id: 'settings',     label: 'Configuración',  icon: Settings,         group: 'sistema', adminOnly: true },
+  // REPORTES
+  { id: 'dashboard',       label: 'Resumen',           icon: BarChart3,       group: 'reportes', groupLabel: 'Reportes' },
+  { id: 'sales-report',    label: 'Ventas',            icon: TrendingUp,      group: 'reportes' },
+  { id: 'products-report', label: 'Productos Report',  icon: Package,         group: 'reportes' },
+  { id: 'app-report',      label: 'App',               icon: Smartphone,      group: 'reportes' },
+  { id: 'analytics',       label: 'Estadísticas',      icon: Activity,        group: 'reportes' },
+
+  // PEDIDOS
+  { id: 'orders',          label: 'Comandas',          icon: ShoppingBag,     group: 'pedidos', groupLabel: 'Pedidos' },
+  { id: 'order-history',   label: 'Historial',         icon: Clock,           group: 'pedidos' },
+  { id: 'delivery-map',    label: 'Mapa Delivery',     icon: MapPin,          group: 'pedidos' },
+
+  // MARKETING
+  { id: 'customers',       label: 'Clientes',          icon: Users,           group: 'marketing', groupLabel: 'Marketing' },
+  { id: 'messages',        label: 'Mensajes',          icon: MessageSquare,   group: 'marketing' },
+  { id: 'promos',          label: 'Promociones',       icon: Megaphone,       group: 'marketing' },
+  { id: 'coupons',         label: 'Cupones',           icon: Ticket,          group: 'marketing' },
+  { id: 'loyalty',         label: 'Fidelización',      icon: Award,           group: 'marketing' },
+  { id: 'segments',        label: 'Segmentación',      icon: Users,           group: 'marketing' },
+  { id: 'automations',     label: 'Automatización',    icon: Zap,             group: 'marketing' },
+  { id: 'push-analytics',  label: 'Analytics Push',    icon: BarChart3,       group: 'marketing' },
+
+  // TIENDA
+  { id: 'store-general',   label: 'General',           icon: Store,           group: 'tienda', groupLabel: 'Tienda' },
+  { id: 'products',        label: 'Productos',         icon: Package,         group: 'tienda' },
+  { id: 'store-promos',    label: 'Ofertas',           icon: Tag,             group: 'tienda' },
+  { id: 'store-combos',    label: 'Combos',            icon: Package,         group: 'tienda' },
+  { id: 'delivery',        label: 'Delivery',          icon: Truck,           group: 'tienda' },
+  { id: 'payments',        label: 'Pagos',             icon: CreditCard,      group: 'tienda' },
+  { id: 'banners',         label: 'Banners',           icon: Image,           group: 'tienda' },
+  { id: 'categories',      label: 'Categorías',        icon: Grid,            group: 'tienda' },
+
+  // CONFIGURACIÓN (solo admin)
+  { id: 'branding',        label: 'Personalización',   icon: Palette,         group: 'config', groupLabel: 'Configuración', adminOnly: true },
+  { id: 'pwa-config',      label: 'PWA',               icon: Smartphone,      group: 'config', adminOnly: true },
+  { id: 'seo',             label: 'SEO',               icon: Search,          group: 'config', adminOnly: true },
+  { id: 'branches',        label: 'Sucursales',        icon: Building2,       group: 'config', adminOnly: true },
+  { id: 'roles',           label: 'Roles',             icon: Shield,          group: 'config', adminOnly: true },
+  { id: 'system',          label: 'Sistema',           icon: Settings,        group: 'config', adminOnly: true },
+  { id: 'extras',          label: 'Extras Productos',  icon: Sliders,         group: 'config', adminOnly: true },
+  { id: 'faq',             label: 'FAQ',               icon: HelpCircle,      group: 'config', adminOnly: true },
 ];
 
 const BOTTOM_TABS = [
-  { id: 'reports', label: 'Panel',   icon: BarChart3 },
-  { id: 'orders',  label: 'Pedidos', icon: ShoppingBag },
-  { id: 'inventory', label: 'Menú',  icon: Utensils },
-  { id: '__more',  label: 'Más',     icon: LayoutGrid },
-  { id: 'settings',label: 'Config',  icon: Settings },
+  { id: 'dashboard', label: 'Reportes', icon: BarChart3 },
+  { id: 'orders',    label: 'Pedidos',  icon: ShoppingBag },
+  { id: 'products',  label: 'Tienda',   icon: Store },
+  { id: '__more',    label: 'Más',      icon: LayoutGrid },
 ];
 
 export default function AdminIndex({ setTab }: AdminIndexProps) {
-  const { config, updateFoodItem, userRole, adminScopeSedeId } = useApp();
+  const { config, updateFoodItem, addFoodItem, userRole, adminScopeSedeId } = useApp();
   const { activeSection, setActiveSection } = useAdminStore();
   const { advanceStatus } = useOrders();
   const themeColor = config.theme_color || '#007AFF';
   const isAdmin = userRole === 'admin';
-  // scopeSedeId: sucursal a la que está limitado el operador; '' = admin ve todas.
   const scopeSedeId = isAdmin ? '' : (adminScopeSedeId || '');
 
   const [showMoreSheet, setShowMoreSheet] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const [openOrderDetailIds, setOpenOrderDetailIds] = useState<string[]>([]);
-  const [editingOrderItems, setEditingOrderItems] = useState<Order | null>(null);
   const [openEditor, setOpenEditor] = useState<FoodItem | null>(null);
-  const [, setSendMsgTitle] = useState('');
-  const [, setSendMsgBody] = useState('');
-  const [, setSendMsgModal] = useState<{ user: AppUser } | null>(null);
-  const [, setPrintingOrder] = useState<Order | null>(null);
-
-  const toggleOrderDetail = useCallback((orderId: string) => {
-    setOpenOrderDetailIds(prev =>
-      prev.includes(orderId) ? prev.filter(id => id !== orderId) : [...prev, orderId]
-    );
-  }, []);
+  const [showProductForm, setShowProductForm] = useState(false);
 
   const handleStatusAdvance = useCallback((order: Order) => {
     advanceStatus(order);
   }, [advanceStatus]);
 
   const visibleSections = ALL_SECTIONS
-    .filter(s => s.id !== 'tables' || config.tiene_mesas)
     .filter(s => isAdmin || !s.adminOnly);
   const sectionLabel = visibleSections.find(s => s.id === activeSection)?.label || 'Panel';
 
   const moreSections = visibleSections.filter(s =>
     !BOTTOM_TABS.some(t => t.id === s.id)
   );
+
+  // Group sections for sidebar with group headers
+  const groupedSections = visibleSections.reduce((acc, section) => {
+    const group = section.group;
+    if (!acc.find(g => g.group === group)) {
+      acc.push({ group, groupLabel: section.groupLabel || group, sections: [] });
+    }
+    acc.find(g => g.group === group)!.sections.push(section);
+    return acc;
+  }, [] as { group: string; groupLabel: string; sections: typeof visibleSections }[]);
 
   const handleSectionChange = (sectionId: string) => {
     setActiveSection(sectionId as Parameters<typeof setActiveSection>[0]);
@@ -114,60 +164,58 @@ export default function AdminIndex({ setTab }: AdminIndexProps) {
   };
 
   const renderSection = () => {
-    // Si es operador y trata de acceder a una sección admin-only, redirigir a pedidos
-    if (!isAdmin && (activeSection === 'settings' || activeSection === 'roles')) {
-      return <OrdersSection
-        openOrderDetailIds={openOrderDetailIds}
-        toggleOrderDetail={toggleOrderDetail}
-        editingOrderItems={editingOrderItems}
-        setEditingOrderItems={setEditingOrderItems}
-        setPrintingOrder={setPrintingOrder}
-        handleStatusAdvance={handleStatusAdvance}
-        scopeSedeId={scopeSedeId}
-      />;
+    // Admin-only redirect
+    if (!isAdmin && ALL_SECTIONS.find(s => s.id === activeSection)?.adminOnly) {
+      return <ComandasSection scopeSedeId={scopeSedeId} />;
     }
 
     switch (activeSection) {
-      case 'reports': return <DashboardSection scopeSedeId={scopeSedeId} />;
-      case 'orders': return (
-        <OrdersSection
-          openOrderDetailIds={openOrderDetailIds}
-          toggleOrderDetail={toggleOrderDetail}
-          editingOrderItems={editingOrderItems}
-          setEditingOrderItems={setEditingOrderItems}
-          setPrintingOrder={setPrintingOrder}
-          handleStatusAdvance={handleStatusAdvance}
-          scopeSedeId={scopeSedeId}
-        />
-      );
-      case 'inventory': return <InventorySection openEditor={setOpenEditor} config={config} />;
-      case 'tables': return (
-        <TablesSection
-          openOrderDetailIds={openOrderDetailIds}
-          toggleOrderDetail={toggleOrderDetail}
-        />
-      );
-      case 'customers': return (
-        <CustomersSection
-          setSendMsgTitle={setSendMsgTitle}
-          setSendMsgBody={setSendMsgBody}
-          setSendMsgModal={setSendMsgModal}
-        />
-      );
-      case 'coupons': return <CouponsSection />;
-      case 'settings': return <SettingsSection setTab={setTab} />;
-      case 'notifications': return <NotificationsSection />;
-      case 'chat': return <ChatSection />;
-      case 'promos': return <PromosSection />;
-      case 'combos': return <CombosSection />;
-      case 'tracking': return <TrackingSection scopeSedeId={scopeSedeId} />;
-      case 'loyalty': return <LoyaltySection />;
-      case 'tienda': return <TiendaSection />;
-      case 'marketing': return <MarketingSection />;
-      case 'roles': return <RolesSection />;
-      default: return <DashboardSection />;
+      // REPORTES
+      case 'dashboard':       return <ResumenGeneralSection />;
+      case 'sales-report':    return <VentasReportSection />;
+      case 'products-report': return <ProductosReportSection />;
+      case 'app-report':      return <AppReportSection />;
+      case 'analytics':       return <EstadisticasSection />;
+
+      // PEDIDOS
+      case 'orders':          return <ComandasSection scopeSedeId={scopeSedeId} />;
+      case 'order-history':   return <HistorialPedidosSection scopeSedeId={scopeSedeId} />;
+      case 'delivery-map':    return <MapaDeliverySection scopeSedeId={scopeSedeId} />;
+
+      // MARKETING
+      case 'customers':       return <ClientesSection />;
+      case 'messages':        return <MensajesSection />;
+      case 'promos':          return <PromocionesSection />;
+      case 'coupons':         return <CuponesSection />;
+      case 'loyalty':         return <FidelizacionSection />;
+      case 'segments':        return <SegmentacionSection />;
+      case 'automations':     return <AutomatizacionSection />;
+      case 'push-analytics':  return <AnalyticsPushSection />;
+
+      // TIENDA
+      case 'store-general':   return <StoreGeneralSection />;
+      case 'products':        return <ProductosSection onEdit={(p) => setOpenEditor(p)} onCreate={() => setShowProductForm(true)} config={config} />;
+      case 'store-promos':    return <OfertasSection />;
+      case 'store-combos':    return <TiendaCombosSection />;
+      case 'delivery':        return <DeliverySection />;
+      case 'payments':        return <PaymentsSection />;
+      case 'banners':         return <BannersSection />;
+      case 'categories':      return <CategoriasSection />;
+
+      // CONFIGURACIÓN
+      case 'branding':        return <PersonalizacionSection />;
+      case 'pwa-config':      return <PWASection />;
+      case 'seo':             return <SEOSection />;
+      case 'branches':        return <SucursalesSection />;
+      case 'roles':           return <RolesSection />;
+      case 'system':          return <SistemaSection />;
+      case 'extras':          return <ExtrasGlobalesSection />;
+      case 'faq':             return <FAQSection />;
+
+      default: return <ResumenGeneralSection />;
     }
   };
+
 
   return (
     <div className="flex h-screen overflow-hidden" style={{ background: 'var(--ios-bg)' }}>
@@ -187,27 +235,7 @@ export default function AdminIndex({ setTab }: AdminIndexProps) {
             </>
           )}
         </div>
-        <nav className="flex-1 overflow-y-auto p-3 space-y-1">
-          {visibleSections.map(section => {
-            const Icon = section.icon;
-            const isActive = activeSection === section.id;
-            return (
-              <button
-                key={section.id}
-                onClick={() => handleSectionChange(section.id)}
-                className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold transition-all cursor-pointer touch-target"
-                style={{
-                  background: isActive ? `${themeColor}15` : 'transparent',
-                  color: isActive ? themeColor : 'var(--ios-text-secondary)',
-                  borderLeft: isActive ? `3px solid ${themeColor}` : '3px solid transparent',
-                }}
-              >
-                <Icon size={20} />
-                {section.label}
-              </button>
-            );
-          })}
-        </nav>
+        <SidebarNav groupedSections={groupedSections} activeSection={activeSection} themeColor={themeColor} onSectionChange={handleSectionChange} />
         <div className="p-3" style={{ borderTop: '1px solid var(--ios-border)' }}>
           <button onClick={() => setTab('home')} className="w-full text-sm py-3 transition-colors cursor-pointer flex items-center justify-center gap-2" style={{ color: 'var(--ios-text-secondary)' }}>
             <ChevronLeft size={16} /> Volver a la tienda
@@ -246,11 +274,8 @@ export default function AdminIndex({ setTab }: AdminIndexProps) {
               <button
                 key={tab.id}
                 onClick={() => {
-                  if (isMore) {
-                    setShowMoreSheet(true);
-                  } else {
-                    handleSectionChange(tab.id);
-                  }
+                  if (isMore) setShowMoreSheet(true);
+                  else handleSectionChange(tab.id);
                 }}
                 className="flex flex-col items-center justify-center gap-1 flex-1 py-2 cursor-pointer touch-target"
                 style={{ color: isActive ? themeColor : 'var(--ios-text-secondary)' }}
@@ -266,13 +291,23 @@ export default function AdminIndex({ setTab }: AdminIndexProps) {
       {/* Edit Product Modal */}
       {openEditor && (
         <div className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto">
-          <EditProductForm
-            part={openEditor}
-            onSubmit={(updated) => {
-              updateFoodItem(updated.id, updated);
-              setOpenEditor(null);
-            }}
+          <ProductoFormSection
+            product={openEditor}
+            onSave={async (updated: Partial<FoodItem>) => { updateFoodItem(updated.id!, updated); }}
             onClose={() => setOpenEditor(null)}
+          />
+        </div>
+      )}
+
+      {/* New Product Modal */}
+      {showProductForm && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto">
+          <ProductoFormSection
+            product={null}
+            onSave={async (newProduct: Partial<FoodItem>) => {
+              addFoodItem(newProduct as any);
+            }}
+            onClose={() => setShowProductForm(false)}
           />
         </div>
       )}
@@ -297,27 +332,7 @@ export default function AdminIndex({ setTab }: AdminIndexProps) {
                 <X size={20} />
               </button>
             </div>
-            <nav className="flex-1 overflow-y-auto p-3 space-y-1">
-              {visibleSections.map(section => {
-                const Icon = section.icon;
-                const isActive = activeSection === section.id;
-                return (
-                  <button
-                    key={section.id}
-                    onClick={() => handleSectionChange(section.id)}
-                    className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold transition-all cursor-pointer touch-target"
-                    style={{
-                      background: isActive ? `${themeColor}15` : 'transparent',
-                      color: isActive ? themeColor : 'var(--ios-text-secondary)',
-                      borderLeft: isActive ? `3px solid ${themeColor}` : '3px solid transparent',
-                    }}
-                  >
-                    <Icon size={20} />
-                    {section.label}
-                  </button>
-                );
-              })}
-            </nav>
+            <SidebarNav groupedSections={groupedSections} activeSection={activeSection} themeColor={themeColor} onSectionChange={handleSectionChange} />
             <div className="p-3" style={{ borderTop: '1px solid var(--ios-border)' }}>
               <button onClick={() => setTab('home')} className="w-full text-sm py-3 flex items-center justify-center gap-2" style={{ color: 'var(--ios-text-secondary)' }}>
                 <ChevronLeft size={16} /> Volver a la tienda
@@ -333,28 +348,41 @@ export default function AdminIndex({ setTab }: AdminIndexProps) {
           <div className="absolute inset-0 bg-black/30" onClick={() => setShowMoreSheet(false)} />
           <div className="absolute bottom-0 left-0 right-0 bottom-sheet" style={{ background: 'var(--ios-card)' }}>
             <div className="bottom-sheet-handle" />
-            <div className="p-4">
+            <div className="p-4 max-h-[70vh] overflow-y-auto">
               <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--ios-text)' }}>Más opciones</h3>
-              <div className="space-y-1">
-                {moreSections.map(section => {
-                  const Icon = section.icon;
-                  const isActive = activeSection === section.id;
-                  return (
-                    <button
-                      key={section.id}
-                      onClick={() => handleSectionChange(section.id)}
-                      className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-semibold transition-all cursor-pointer touch-target"
-                      style={{
-                        background: isActive ? `${themeColor}15` : 'transparent',
-                        color: isActive ? themeColor : 'var(--ios-text)',
-                      }}
-                    >
-                      <Icon size={20} />
-                      {section.label}
-                    </button>
-                  );
-                })}
-              </div>
+              {(() => {
+                const moreGrouped = moreSections.reduce((acc, section) => {
+                  const group = section.group;
+                  if (!acc.find(g => g.group === group)) {
+                    acc.push({ group, groupLabel: section.groupLabel || group, sections: [] });
+                  }
+                  acc.find(g => g.group === group)!.sections.push(section);
+                  return acc;
+                }, [] as { group: string; groupLabel: string; sections: typeof moreSections }[]);
+                return moreGrouped.map(({ group, groupLabel, sections }) => (
+                  <div key={group} className="mb-3">
+                    <p className="text-[9px] font-bold uppercase tracking-widest px-2 mb-1 text-slate-400">{groupLabel}</p>
+                    {sections.map(section => {
+                      const Icon = section.icon;
+                      const isActive = activeSection === section.id;
+                      return (
+                        <button
+                          key={section.id}
+                          onClick={() => handleSectionChange(section.id)}
+                          className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold transition-all cursor-pointer touch-target"
+                          style={{
+                            background: isActive ? `${themeColor}15` : 'transparent',
+                            color: isActive ? themeColor : 'var(--ios-text)',
+                          }}
+                        >
+                          <Icon size={20} />
+                          {section.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ));
+              })()}
               <button
                 onClick={() => { setTab('home'); setShowMoreSheet(false); }}
                 className="w-full mt-4 py-3.5 rounded-xl text-sm font-semibold cursor-pointer touch-target"

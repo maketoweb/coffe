@@ -15,6 +15,7 @@ import { OfflineBanner } from './components/OfflineBanner';
 import { FreeDeliveryBar } from './components/FreeDeliveryBar';
 import { ProductModal } from './components/ProductModal';
 import { SplashScreen } from './components/SplashScreen';
+import { ToastProvider, useToast } from './components/Toast';
 
 import { SkeletonHome, SkeletonCatalog, SkeletonCheckout, SkeletonProfile } from './components/Skeletons';
 
@@ -46,6 +47,7 @@ interface WebAppManifest {
 
 function AppContent() {
   const { cart, config, addToCart, authenticateAdmin, isGlobalLoading, isAdminAuthenticated, currentUser, markUserAsPwaInstalled, isDarkMode } = useApp();
+  const { showToast } = useToast();
 
   // PWA Install Prompt State
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
@@ -246,7 +248,7 @@ function AppContent() {
       setAdminPasswordInput('');
       setAdminUserInput('');
     } else {
-      alert('Credenciales incorrectas o sin permisos de administración');
+      showToast('error', 'Credenciales incorrectas o sin permisos de administracion');
     }
   };
 
@@ -434,7 +436,9 @@ function AppContent() {
 export default function App() {
   return (
     <AppProvider>
-      <AppContent />
+      <ToastProvider>
+        <AppContent />
+      </ToastProvider>
     </AppProvider>
   );
 }
