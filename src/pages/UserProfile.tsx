@@ -151,8 +151,8 @@ export const UserProfile: React.FC<UserProfileProps> = ({ setTab, deferredPrompt
         navigator.serviceWorker.ready.then(reg => {
           reg.showNotification('¡Notificaciones Habilitadas! 🔔', {
             body: '¡Excelente! Ahora recibirás actualizaciones rápidas de tus pedidos y promociones de ' + (config.site_nombre || 'nuestra tienda') + '.',
-            icon: config.logo_url || '/icon.png',
-            badge: '/icon.png',
+            icon: config.logo_url || '/coffe/icon.png',
+            badge: '/coffe/icon.png',
             vibrate: [200, 100, 200],
             tag: 'welcome-trv'
           } as NotificationOptions);

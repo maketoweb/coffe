@@ -113,7 +113,7 @@ function AppContent() {
     }
 
     // Update apple-touch-icon
-    const appleTouchUrl = config.pwa_icon_url || config.logo_url || config.favicon_url || '/icon.png';
+    const appleTouchUrl = config.pwa_icon_url || config.logo_url || config.favicon_url || '/coffe/icon.png';
     const appleLink = document.querySelector('link[rel="apple-touch-icon"]') as HTMLLinkElement | null;
     if (appleLink) appleLink.setAttribute('href', appleTouchUrl);
 
