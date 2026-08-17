@@ -12,13 +12,13 @@
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "/pwa-192x192.png",
+      "src": "/icon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/pwa-512x512.png",
+      "src": "/icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
@@ -31,21 +31,21 @@
       "short_name": "Dashboard",
       "url": "/admin",
       "description": "Panel principal con métricas y resumen",
-      "icons": [{"src": "/pwa-192x192.png", "sizes": "192x192"}]
+      "icons": [{"src": "/icon.png", "sizes": "192x192"}]
     },
     {
       "name": "Órdenes",
       "short_name": "Órdenes",
       "url": "/admin?tab=orders",
       "description": "Gestionar pedidos activos e historial",
-      "icons": [{"src": "/pwa-192x192.png", "sizes": "192x192"}]
+      "icons": [{"src": "/icon.png", "sizes": "192x192"}]
     },
     {
       "name": "Productos",
       "short_name": "Productos",
       "url": "/admin?tab=products",
       "description": "Administrar catálogo de productos",
-      "icons": [{"src": "/pwa-192x192.png", "sizes": "192x192"}]
+      "icons": [{"src": "/icon.png", "sizes": "192x192"}]
     }
   ]
 }

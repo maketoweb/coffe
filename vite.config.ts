@@ -15,7 +15,7 @@ export default defineConfig(({mode}) => {
         registerType: 'autoUpdate',
         strategies: 'generateSW',
         selfDestroying: true,
-        includeAssets: ['favicon.ico', 'favicon.svg', 'apple-touch-icon.png', 'pwa-192x192.png', 'pwa-512x512.png', 'pwa-maskable-512x512.png', 'sounds/notification.mp3', 'manifest-admin.json', 'logo-transparent.svg'],
+        includeAssets: ['icon.png', 'logo.png', 'sounds/notification.mp3', 'manifest-admin.json'],
         manifest: false,
         workbox: {
           importScripts: ['/sw-push.js'],

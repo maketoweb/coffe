@@ -107,7 +107,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     }, 500);
 
     // Apple Touch Icon dinámico
-    const appleTouchUrl = config.pwa_icon_url || config.logo_url || config.favicon_url || '/pwa-192x192.png';
+    const appleTouchUrl = config.pwa_icon_url || config.logo_url || config.favicon_url || '/icon.png';
     let appleLink = document.querySelector('link[rel="apple-touch-icon"]') as HTMLLinkElement | null;
     if (!appleLink) {
       appleLink = document.createElement('link');
