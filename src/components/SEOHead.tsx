@@ -123,7 +123,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         iconLink.setAttribute('rel', 'icon');
         document.head.appendChild(iconLink);
       }
-      iconLink.setAttribute('href', config.favicon_url || config.pwa_icon_url || config.logo_url || '/favicon.ico');
+      iconLink.setAttribute('href', config.favicon_url || config.pwa_icon_url || config.logo_url || '/coffe/icon.png');
     }
     
     let themeMeta = document.querySelector('meta[name="theme-color"]');
