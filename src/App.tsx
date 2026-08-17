@@ -120,7 +120,8 @@ function AppContent() {
     // Rebuild manifest blob URL with current config
     const manifestLink = document.getElementById('pwa-manifest') as HTMLLinkElement | null;
     if (manifestLink && config.pwa_icon_url) {
-      const baseManifestUrl = window.location.pathname.startsWith('/admin') ? '/manifest-admin.json' : '/manifest.json';
+      const isOnAdmin = window.location.pathname.startsWith('/coffe/admin') || window.location.pathname.startsWith('/admin');
+      const baseManifestUrl = isOnAdmin ? './manifest-admin.json' : './manifest.json';
       const origin = window.location.origin;
       fetch(baseManifestUrl).then(r => r.json()).then((baseManifest: WebAppManifest) => {
         baseManifest.icons = baseManifest.icons.map((icon: ManifestIcon) => ({

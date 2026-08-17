@@ -18,11 +18,11 @@ export default defineConfig(({mode}) => {
         includeAssets: ['icon.png', 'logo.png', 'sounds/notification.mp3', 'manifest-admin.json'],
         manifest: false,
         workbox: {
-          importScripts: ['/sw-push.js'],
-          navigateFallback: '/index.html',
-          navigateFallbackDenylist: [/^\/api\//],
+          importScripts: ['/coffe/sw-push.js'],
+          navigateFallback: '/coffe/index.html',
+          navigateFallbackDenylist: [/^\/coffe\/api\//],
           additionalManifestEntries: [
-            { url: '/offline.html', revision: null },
+            { url: '/coffe/offline.html', revision: null },
           ],
           runtimeCaching: [
             {
