@@ -1,0 +1,284 @@
+
+> react-example@0.1.0 lint
+> eslint src --ext .ts,.tsx
+
+
+E:\food-app\src\App.tsx
+   25:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   30:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   45:82  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   99:70  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  100:60  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  114:67  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  117:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\__tests__\guest-checkout.test.tsx
+  37:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  82:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\__tests__\push-notifications.test.ts
+   12:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   13:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   22:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   32:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   32:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   67:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   98:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  221:57  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  376:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  444:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  504:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  532:35  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  560:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  599:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\CheckoutModal.tsx
+  24:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\LeafletMap.tsx
+   63:33  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+   64:32  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+   65:30  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+   76:22  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+   97:26  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  212:31  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  218:25  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  243:6   warning  React Hook useEffect has missing dependencies: 'config' and 'onLocationSelected'. Either include them or remove the dependency array. If 'onLocationSelected' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+
+E:\food-app\src\components\ProductModal.tsx
+  81:6  warning  React Hook useEffect has a missing dependency: 'product'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+E:\food-app\src\components\PromoPushSender.tsx
+  7:11  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\PushNotificationModal.tsx
+   52:32  warning  Unexpected any. Specify a different type                                           @typescript-eslint/no-explicit-any
+   58:9   warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+   83:15  warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+  103:16  warning  Unexpected any. Specify a different type                                           @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\SEOHead.tsx
+   94:37  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+   97:31  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+  155:20  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+  212:6   warning  React Hook useEffect has a missing dependency: 'config'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+E:\food-app\src\components\SedesMap.tsx
+   15:33  warning  Unexpected any. Specify a different type                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+   16:29  warning  Unexpected any. Specify a different type                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+   17:32  warning  Unexpected any. Specify a different type                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+   26:22  warning  Unexpected any. Specify a different type                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+   39:26  warning  Unexpected any. Specify a different type                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+  114:6   warning  React Hook useEffect has a missing dependency: 'onSelect'. Either include it or remove the dependency array. If 'onSelect' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+  140:26  warning  Unexpected any. Specify a different type                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\SplashScreen.tsx
+  4:11  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\Admin.tsx
+   397:32  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+   412:10  warning  'formNombre' is assigned a value but never used                                                                                                   @typescript-eslint/no-unused-vars
+   413:10  warning  'formDescripcion' is assigned a value but never used                                                                                              @typescript-eslint/no-unused-vars
+   414:10  warning  'formCategoria' is assigned a value but never used                                                                                                @typescript-eslint/no-unused-vars
+   415:10  warning  'formPrecio' is assigned a value but never used                                                                                                   @typescript-eslint/no-unused-vars
+   416:10  warning  'formStock' is assigned a value but never used                                                                                                    @typescript-eslint/no-unused-vars
+   417:10  warning  'formImages' is assigned a value but never used                                                                                                   @typescript-eslint/no-unused-vars
+   418:10  warning  'formPromo' is assigned a value but never used                                                                                                    @typescript-eslint/no-unused-vars
+   419:10  warning  'formNuevo' is assigned a value but never used                                                                                                    @typescript-eslint/no-unused-vars
+   420:10  warning  'formVendido' is assigned a value but never used                                                                                                  @typescript-eslint/no-unused-vars
+   421:10  warning  'formDisponibilidad' is assigned a value but never used                                                                                           @typescript-eslint/no-unused-vars
+   473:19  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+   565:42  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+   565:79  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+   578:36  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+   671:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+   785:18  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+   787:20  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+   993:11  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+   997:6   warning  React Hook useEffect has missing dependencies: 'config.site_nombre' and 'handleManualBackup'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  1002:6   warning  React Hook useMemo has a missing dependency: 'searchItems'. Either include it or remove the dependency array                                      react-hooks/exhaustive-deps
+  1007:6   warning  React Hook useMemo has a missing dependency: 'searchItems'. Either include it or remove the dependency array                                      react-hooks/exhaustive-deps
+  1056:64  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  1354:34  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  1355:34  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  1359:35  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  1469:56  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  1704:75  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  2421:17  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+  2434:19  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+  2695:68  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  2732:71  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  3100:45  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  3106:33  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  3110:45  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+  3122:47  warning  Unexpected any. Specify a different type                                                                                                          @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\Checkout.tsx
+    25:54  warning  Unexpected any. Specify a different type                                                                                                                                                                    @typescript-eslint/no-explicit-any
+    51:56  warning  Unexpected any. Specify a different type                                                                                                                                                                    @typescript-eslint/no-explicit-any
+    60:9   warning  The 'activeSedes' logical expression could make the dependencies of useCallback Hook (at line 98) change on every render. To fix this, wrap the initialization of 'activeSedes' in its own useMemo() Hook   react-hooks/exhaustive-deps
+    60:9   warning  The 'activeSedes' logical expression could make the dependencies of useCallback Hook (at line 134) change on every render. To fix this, wrap the initialization of 'activeSedes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+    87:6   warning  React Hook useEffect has a missing dependency: 'clearCart'. Either include it or remove the dependency array                                                                                                react-hooks/exhaustive-deps
+   172:6   warning  React Hook useEffect has missing dependencies: 'activeSedes', 'currentUser', 'detectNearestSede', and 'hasMultipleSedes'. Either include them or remove the dependency array                                react-hooks/exhaustive-deps
+   215:6   warning  React Hook useEffect has missing dependencies: 'config.entrega_por_zonas', 'currentUser', and 'orders'. Either include them or remove the dependency array                                                  react-hooks/exhaustive-deps
+   998:86  warning  Unexpected any. Specify a different type                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  1177:11  warning  Unexpected any. Specify a different type                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  1209:36  warning  Unexpected any. Specify a different type                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  1244:6   warning  React Hook useEffect has missing dependencies: 'calcCost', 'calcDistance', and 'initialLat'. Either include them or remove the dependency array                                                             react-hooks/exhaustive-deps
+
+E:\food-app\src\pages\Home.tsx
+   43:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  255:67  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\UserProfile.tsx
+   16:20  warning  Unexpected any. Specify a different type            @typescript-eslint/no-explicit-any
+   87:62  warning  Unexpected any. Specify a different type            @typescript-eslint/no-explicit-any
+  123:40  warning  Unexpected any. Specify a different type            @typescript-eslint/no-explicit-any
+  144:16  warning  Unexpected any. Specify a different type            @typescript-eslint/no-explicit-any
+  149:21  warning  Unexpected any. Specify a different type            @typescript-eslint/no-explicit-any
+  173:62  warning  Unexpected any. Specify a different type            @typescript-eslint/no-explicit-any
+  174:10  warning  'updateSuccess' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  186:68  warning  Unexpected any. Specify a different type            @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\components\AdminTrackingMap.tsx
+   40:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   41:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   42:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   48:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   68:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  118:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\components\ImageField.tsx
+  44:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\components\ProductPreviewModal.tsx
+  175:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\components\PromotionForm.tsx
+  66:11  warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+
+E:\food-app\src\pages\admin\components\SedeForm.tsx
+  64:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\index.tsx
+  111:35  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\CouponsSection.tsx
+  37:95  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\InventorySection.tsx
+   23:6   warning  React Hook useMemo has a missing dependency: 'searchItems'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+   26:42  warning  Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   26:79  warning  Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   39:36  warning  Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  105:18  warning  Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  107:20  warning  Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\LoyaltySection.tsx
+   48:60  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  215:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\NotificationsSection.tsx
+   82:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  121:97  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\PromosSection.tsx
+  122:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\RolesSection.tsx
+   96:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  120:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx
+   12:18   warning  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+   15:44   warning  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+   15:89   warning  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+  187:10   warning  'toastMessage' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  188:10   warning  'toastTitle' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  329:19   warning  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+  459:101  warning  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+  774:71   warning  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\TiendaSection.tsx
+    24:9    warning  'bannerInputRef' is assigned a value but never used      @typescript-eslint/no-unused-vars
+    25:10   warning  'uploadingBanner' is assigned a value but never used     @typescript-eslint/no-unused-vars
+    79:19   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+   102:9    warning  'handleBannerUpload' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   112:19   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+   723:125  warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+   733:125  warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+   786:56   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+   803:56   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+   805:56   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  1054:62   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  1058:33   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  1062:27   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  1066:58   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  1072:89   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  1247:51   warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\marketing\MarketingDashboard.tsx
+   18:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  119:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\marketing\PushAnalytics.tsx
+  5:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx
+  19:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\store\AppContext.tsx
+  1327:50  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1350:31  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1425:13  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  1435:6   warning  React Hook useEffect has a missing dependency: 'syncPushSubscription'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  1438:22  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1447:38  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1453:48  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1512:22  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1518:70  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1536:20  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1563:42  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1582:41  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1602:41  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1612:13  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  1624:6   warning  React Hook useEffect has a missing dependency: 'config.site_nombre'. Either include it or remove the dependency array    react-hooks/exhaustive-deps
+  1683:9   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  1694:41  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1710:11  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  1713:23  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  1720:7   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2014:8   warning  React Hook useEffect has a missing dependency: 'fetchExchangeRate'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  2036:36  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  2160:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2174:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2209:30  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  2337:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2346:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2351:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2356:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2409:30  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  2512:26  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  2806:26  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  2902:32  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  2964:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  3013:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  3093:9   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  3096:19  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  3280:23  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+
+E:\food-app\src\store\supabaseClient.ts
+  10:15  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  70:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\test\setup.ts
+  63:6   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  67:14  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  70:14  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\vite-env.d.ts
+  9:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Ô£û 205 problems (0 errors, 205 warnings)
+

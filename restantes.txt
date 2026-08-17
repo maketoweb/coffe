@@ -1,0 +1,19 @@
+E:\food-app\src\pages\Admin.tsx :: 412:10  warning  'formNombre' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 413:10  warning  'formDescripcion' is assigned a value but never used                                                             @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 414:10  warning  'formCategoria' is assigned a value but never used                                                               @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 415:10  warning  'formPrecio' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 416:10  warning  'formStock' is assigned a value but never used                                                                   @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 417:10  warning  'formImages' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 418:10  warning  'formPromo' is assigned a value but never used                                                                   @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 419:10  warning  'formNuevo' is assigned a value but never used                                                                   @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 420:10  warning  'formVendido' is assigned a value but never used                                                                 @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 421:10  warning  'formDisponibilidad' is assigned a value but never used                                                          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 1003:6   warning  React Hook useMemo has an unnecessary dependency: 'foodItems'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+E:\food-app\src\pages\UserProfile.tsx :: 174:10  warning  'updateSuccess' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\InventorySection.tsx :: 23:6   warning  React Hook useMemo has an unnecessary dependency: 'foodItems'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 187:10   warning  'toastMessage' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 188:10   warning  'toastTitle' is assigned a value but never used    @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\TiendaSection.tsx :: 24:9    warning  'bannerInputRef' is assigned a value but never used      @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\TiendaSection.tsx :: 25:10   warning  'uploadingBanner' is assigned a value but never used     @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\TiendaSection.tsx :: 102:9    warning  'handleBannerUpload' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\store\AppContext.tsx :: 1625:6   warning  React Hook useEffect has a missing dependency: 'config.site_nombre'. Either include it or remove the dependency array  react-hooks/exhaustive-deps

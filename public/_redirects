@@ -1,0 +1,2 @@
+# SPA fallback - Cloudflare Pages serves index.html for unmatched routes automatically
+# Only add explicit redirects for non-HTML routes if needed

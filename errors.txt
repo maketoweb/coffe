@@ -1,0 +1,47 @@
+   91:9   error    'appleLink' is never reassigned. Use 'const' instead  prefer-const
+  652:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  659:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  664:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  669:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  674:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+   58:9   warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+   83:15  warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+   706:5    warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+  1028:11   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+  2456:17   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+  2469:19   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+   150:15  error    Empty block statement                                                                                                                                                                                       no-empty
+   161:15  error    Empty block statement                                                                                                                                                                                       no-empty
+   171:15  error    Empty block statement                                                                                                                                                                                       no-empty
+   192:17  error    Empty block statement                                                                                                                                                                                       no-empty
+   298:17  error    Empty block statement                                                                                                                                                                                       no-empty
+  1251:17  error    Empty block statement                                                                                                                                                                                       no-empty
+  165:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+   72:58  error    Empty block statement                     no-empty
+  109:60  error    Empty block statement                     no-empty
+  66:11  warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+   35:19  warning  'error' is assigned a value but never used  @typescript-eslint/no-unused-vars
+    8:64  error  'window' is not defined  no-undef
+   45:64  error  'window' is not defined  no-undef
+   63:69  error  'window' is not defined  no-undef
+   70:79  error  'window' is not defined  no-undef
+   90:64  error  'window' is not defined  no-undef
+  134:69  error  'window' is not defined  no-undef
+  170:70  error  'window' is not defined  no-undef
+  184:70  error  'window' is not defined  no-undef
+  1425:13  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  1612:13  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  1683:9   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  1710:11  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  1720:7   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2160:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2174:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2337:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2346:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2351:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2356:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  2964:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  3013:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+  3093:9   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+Ô£û 384 problems (22 errors, 362 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.

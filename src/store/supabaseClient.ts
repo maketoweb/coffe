@@ -1,0 +1,164 @@
+﻿import { createClient } from '@supabase/supabase-js';
+import type { SupabaseClient } from '@supabase/supabase-js';
+
+// URL y Clave anónima de Supabase inyectadas desde las variables de entorno de Vite
+// .trim() elimina trailing newlines/whitespace del .env que causan HTTP 401 en WebSocket
+const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL || '').trim();
+const supabaseAnonKey = (import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim();
+
+const createMockClient = (): SupabaseClient => {
+  const mock: any = {
+    from: () => mock,
+    select: () => mock,
+    insert: () => mock,
+    update: () => mock,
+    delete: () => mock,
+    eq: () => mock,
+    neq: () => mock,
+    gt: () => mock,
+    lt: () => mock,
+    gte: () => mock,
+    lte: () => mock,
+    like: () => mock,
+    ilike: () => mock,
+    is: () => mock,
+    in: () => mock,
+    contains: () => mock,
+    containedBy: () => mock,
+    rangeGt: () => mock,
+    rangeLt: () => mock,
+    rangeGte: () => mock,
+    rangeLte: () => mock,
+    overlaps: () => mock,
+    textSearch: () => mock,
+    match: () => mock,
+    not: () => mock,
+    or: () => mock,
+    filter: () => mock,
+    single: () => ({ data: null, error: null }),
+    maybeSingle: () => ({ data: null, error: null }),
+    order: () => mock,
+    limit: () => mock,
+    range: () => mock,
+    upsert: () => mock,
+    then: (cb: (result: { data: unknown[]; error: null }) => void) => cb({ data: [], error: null }),
+    storage: {
+      from: () => ({
+        upload: async () => ({ error: null }),
+        getPublicUrl: () => ({ data: { publicUrl: '' } }),
+        remove: async () => ({ error: null }),
+        list: async () => ({ data: [], error: null }),
+      }),
+    },
+    auth: {
+      getSession: async () => ({ data: { session: null }, error: null }),
+      getUser: async () => ({ data: { user: null }, error: null }),
+      signInWithPassword: async () => ({ data: { user: null, session: null }, error: null }),
+      signUp: async () => ({ data: { user: null, session: null }, error: null }),
+      signOut: async () => ({ error: null }),
+      updateUser: async () => ({ data: { user: null }, error: null }),
+      resetPasswordForEmail: async () => ({ data: null, error: null }),
+      onAuthStateChange: () => ({
+        data: {
+          subscription: {
+            unsubscribe: () => {},
+          },
+        },
+      }),
+    },
+    channel: () => {
+      const channelMock: any = {
+        send: async () => ({ error: null }),
+        on: () => channelMock,
+        subscribe: () => channelMock,
+        unsubscribe: async () => {},
+        track: async () => ({ error: null }),
+        untrack: async () => ({ error: null }),
+      };
+      return channelMock;
+    },
+    removeChannel: async () => {},
+    removeAllChannels: async () => {},
+    rpc: async () => ({ data: [], error: null }),
+  };
+  return mock;
+};
+
+export const supabase = supabaseUrl && supabaseAnonKey
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+      }
+    })
+  : createMockClient();
+
+/**
+ * Comprime una imagen y la devuelve como un Blob listo para subir
+ */
+export const compressImage = async (
+  file: File,
+  options: { maxWidth?: number; quality?: number; format?: 'image/webp' | 'image/jpeg' | 'image/png' } = {}
+): Promise<Blob> => {
+  const { maxWidth = 800, quality = 0.8, format = 'image/webp' } = options;
+
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target?.result as string;
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxWidth) {
+          height = (maxWidth * height) / width;
+          width = maxWidth;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx?.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob((blob) => {
+          if (blob) resolve(blob);
+          else reject(new Error('Error al comprimir imagen'));
+        }, format, quality);
+      };
+    };
+    reader.onerror = (error) => reject(error);
+  });
+};
+
+/**
+ * Sube un archivo a un bucket de Supabase Storage y retorna su URL pública
+ */
+export const uploadFileToStorage = async (file: File | Blob, bucket: string, folder: string): Promise<string> => {
+  const fileExt = file instanceof File ? file.name.split('.').pop() : 'webp';
+  const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
+  const filePath = `${folder}/${fileName}`;
+
+  const { error: uploadError } = await supabase.storage
+    .from(bucket)
+    .upload(filePath, file, {
+      upsert: true,
+      contentType: file.type || 'image/webp'
+    });
+
+  if (uploadError) throw uploadError;
+
+  const { data } = supabase.storage.from(bucket).getPublicUrl(filePath);
+  return data.publicUrl;
+};
+
+/**
+ * Obtiene la URL pública de un archivo en Supabase Storage
+ */
+export const getPublicUrl = (bucket: string, path: string): string => {
+  const { data } = supabase.storage.from(bucket).getPublicUrl(path);
+  return data.publicUrl;
+};

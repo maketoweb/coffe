@@ -1,0 +1,225 @@
+
+> react-example@0.1.0 lint
+> eslint src --ext .ts,.tsx
+
+
+E:\food-app\src\App.tsx
+   25:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   30:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   45:82  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   99:70  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  100:60  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  114:67  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  117:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\__tests__\guest-checkout.test.tsx
+  37:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  82:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\__tests__\push-notifications.test.ts
+   12:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   13:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   22:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   32:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   32:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   67:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   98:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  221:57  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  376:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  444:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  504:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  532:35  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  560:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  599:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\CheckoutModal.tsx
+  24:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\LeafletMap.tsx
+   63:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   64:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   65:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   76:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   97:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  212:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  218:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\PromoPushSender.tsx
+  7:11  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\PushNotificationModal.tsx
+   52:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  103:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\SEOHead.tsx
+   94:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   97:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  155:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\SedesMap.tsx
+   15:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   16:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   17:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   26:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   39:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  141:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\components\SplashScreen.tsx
+  4:11  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\Admin.tsx
+   397:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   473:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   565:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   565:79  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   578:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   785:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   787:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1057:64  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1355:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1356:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1360:35  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1470:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1705:75  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2696:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2733:71  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  3101:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  3107:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  3111:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  3123:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\Checkout.tsx
+    25:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+    51:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   998:86  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1177:11  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1209:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\Home.tsx
+   43:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  255:67  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\UserProfile.tsx
+   16:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   87:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  123:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  144:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  149:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  173:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  186:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\components\AdminTrackingMap.tsx
+   40:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   41:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   42:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   48:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   68:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  118:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\components\ImageField.tsx
+  44:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\components\ProductPreviewModal.tsx
+  175:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\components\SedeForm.tsx
+  64:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\index.tsx
+  111:35  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\CouponsSection.tsx
+  37:95  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\InventorySection.tsx
+   26:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   26:79  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   39:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  105:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  107:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\LoyaltySection.tsx
+   48:60  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  215:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\NotificationsSection.tsx
+   82:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  121:97  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\PromosSection.tsx
+  122:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\RolesSection.tsx
+   96:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  120:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx
+   12:18   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   15:44   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   15:89   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  329:19   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  459:101  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  774:71   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\TiendaSection.tsx
+    76:19   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   702:125  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   712:125  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   765:56   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   782:56   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   784:56   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1033:62   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1037:33   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1041:27   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1045:58   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1051:89   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1226:51   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\marketing\MarketingDashboard.tsx
+   18:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  119:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\marketing\PushAnalytics.tsx
+  5:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx
+  19:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\store\AppContext.tsx
+  1327:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1350:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1439:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1448:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1454:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1513:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1519:70  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1537:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1564:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1583:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1603:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1695:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1714:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2038:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2211:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2411:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2514:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2808:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2904:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  3098:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  3282:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\store\supabaseClient.ts
+  10:15  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  70:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\test\setup.ts
+  63:6   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  67:14  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  70:14  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\food-app\src\vite-env.d.ts
+  9:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Ô£û 150 problems (0 errors, 150 warnings)
+

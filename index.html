@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Market Coffee | Mercado, Panaderia & Comida Rapida</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="Market Coffee: Tu mercado, panaderia y comida rapida favorita. Frutas, verduras, pan fresco, hamburguesas, shawarma y mas. Pide ahora y recibe en minutos." />
+    <meta name="keywords" content="mercado, panaderia, comida rapida, hamburguesas, shawarma, perros calientes, frutas, verduras, pan, dulces, market coffee" />
+    <meta name="author" content="Market Coffee" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Security -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="color-scheme" content="light" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(self)" />
+    
+    <!-- Geo-Tagging -->
+    <meta name="geo.region" content="VE-D" />
+    <meta name="geo.placename" content="Venezuela" />
+    <meta name="geo.position" content="10.198300;-68.004400" />
+    <meta name="ICBM" content="10.198300, -68.004400" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Market Coffee | Mercado, Panaderia & Comida Rapida" />
+    <meta property="og:description" content="Tu mercado, panaderia y comida rapida favorita. Frutas, verduras, pan fresco, hamburguesas y mas." />
+    <meta property="og:url" content="https://marketcoffee.com.ve" />
+    <meta property="og:site_name" content="Market Coffee" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200" />
+    <meta property="og:locale" content="es_VE" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Market Coffee: Mercado, Panaderia & Comida Rapida" />
+    <meta name="twitter:description" content="Market Coffee: Tu mercado, panaderia y comida rapida favorita. Pide ahora." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200" />
+
+    <!-- iOS PWA -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Market Coffee" />
+    <meta name="theme-color" content="#2D6A4F" />
+
+    <!-- CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https: wss:; frame-src 'self' https:; media-src 'self' blob: https://assets.mixkit.co; manifest-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https:;"
+    />
+    <link id="pwa-manifest" rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/pwa-192x192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Google Fonts: Plus Jakarta Sans + Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  </head>
+  <body class="bg-[#f9f9fb] text-[#1a1c1d] antialiased overflow-x-hidden">
+    <!-- Clear old caches + apply config before React loads -->
+    <script>
+      (function() {
+        // Force-clear all old workbox precache entries on every load
+        if ('caches' in window) {
+          caches.keys().then(function(names) {
+            names.forEach(function(name) {
+              if (name.startsWith('workbox-precache') || name.startsWith('supabase') || name.startsWith('images-cache')) {
+                caches.delete(name);
+              }
+            });
+          });
+        }
+
+        var manifestLink = document.getElementById('pwa-manifest');
+        var isAdmin = window.location.pathname.startsWith('/admin');
+        if (manifestLink && isAdmin) {
+          manifestLink.href = '/manifest-admin.json';
+              document.querySelector('meta[name="apple-mobile-web-app-title"]').setAttribute('content', 'Market Coffee Admin');
+        }
+
+        try {
+          var saved = localStorage.getItem('trv_config');
+          if (saved) {
+            var cfg = JSON.parse(saved);
+            if (cfg.theme_color) {
+              document.body.style.backgroundColor = cfg.theme_color;
+              document.querySelector('meta[name="theme-color"]').setAttribute('content', cfg.theme_color);
+            }
+            if (cfg.site_nombre) {
+              document.title = cfg.site_nombre + ' | Delivery de Comida Premium';
+              document.querySelector('meta[name="apple-mobile-web-app-title"]').setAttribute('content', cfg.site_nombre);
+              document.querySelector('meta[property="og:site_name"]').setAttribute('content', cfg.site_nombre);
+            }
+            if (cfg.pwa_icon_url && manifestLink) {
+              var iconUrl = cfg.pwa_icon_url;
+              if (iconUrl && (iconUrl.startsWith('http://') || iconUrl.startsWith('https://') || iconUrl.startsWith('data:'))) {
+              var manifestHref = manifestLink.getAttribute('href') || manifestLink.href;
+              fetch(manifestHref).then(function(r) { return r.json(); }).then(function(baseManifest) {
+                var origin = window.location.origin;
+                baseManifest.icons = baseManifest.icons.map(function(icon) {
+                  return Object.assign({}, icon, { src: iconUrl });
+                });
+                if (baseManifest.start_url && !baseManifest.start_url.startsWith('http')) {
+                  baseManifest.start_url = origin + baseManifest.start_url;
+                }
+                if (baseManifest.scope && !baseManifest.scope.startsWith('http')) {
+                  baseManifest.scope = origin + baseManifest.scope;
+                }
+                if (baseManifest.id && !baseManifest.id.startsWith('http')) {
+                  baseManifest.id = origin + baseManifest.id;
+                }
+                if (baseManifest.shortcuts) {
+                  baseManifest.shortcuts = baseManifest.shortcuts.map(function(s) {
+                    var fixed = Object.assign({}, s);
+                    if (fixed.url && !fixed.url.startsWith('http')) {
+                      fixed.url = origin + fixed.url;
+                    }
+                    if (fixed.icons) {
+                      fixed.icons = fixed.icons.map(function(ic) {
+                        var newIc = Object.assign({}, ic);
+                        if (newIc.src && !newIc.src.startsWith('http') && !newIc.src.startsWith('data:')) {
+                          newIc.src = origin + newIc.src;
+                        }
+                        return newIc;
+                      });
+                    }
+                    return fixed;
+                  });
+                }
+                if (cfg.theme_color) {
+                  baseManifest.theme_color = cfg.theme_color;
+                  baseManifest.background_color = cfg.theme_color;
+                }
+                if (cfg.site_nombre) {
+                  baseManifest.name = cfg.site_nombre;
+                  baseManifest.short_name = cfg.site_nombre.substring(0, 12);
+                }
+                var blob = new Blob([JSON.stringify(baseManifest)], { type: 'application/json' });
+                var blobUrl = URL.createObjectURL(blob);
+                manifestLink.href = blobUrl;
+              }).catch(function() {});
+              }
+            }
+          }
+        } catch(e) {}
+      })();
+    </script>
+    <div id="root"></div>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

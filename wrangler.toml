@@ -1,0 +1,23 @@
+name = "foodapp"
+compatibility_date = "2025-09-23"
+pages_build_output_dir = "dist"
+
+# Needed so Wrangler can bundle Node built-ins required by some dependencies
+# (web-push / proxy agents, etc.) when deployed to Cloudflare Pages.
+compatibility_flags = ["nodejs_compat"]
+
+# ── Variables de entorno del servidor (definir los SECRETOS en el dashboard) ──
+# Cloudflare Pages -> Settings -> Environment variables:
+#   PUSH_WEBHOOK_SECRET   : secret compartido con el trigger de Supabase (app_secrets)
+#   VAPID_PRIVATE_KEY      : clave privada VAPID para enviar web push
+#   ALLOWED_ORIGINS       : origenes permitidos para CORS (/api/*). Ejm:
+#                           https://foodpop.maketo.site,http://localhost:3000
+#
+# NOTA: No uses variables VITE_* para secrets; esas se compilan en el bundle
+# del cliente y quedan expuestas.
+
+# ---- Rate limiting para los endpoints /api/* --------------------------------
+# Crear un KV namespace en Cloudflare y descomentar/ajustar el id:
+# [[kv_namespaces]]
+# binding = "PUSH_RATE_LIMIT_KV"
+# id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"

@@ -1,0 +1,8 @@
+dist/
+node_modules/
+coverage/
+*.md
+public/
+supabase/
+functions/
+.github/

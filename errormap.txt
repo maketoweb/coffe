@@ -1,0 +1,47 @@
+E:\food-app\src\App.tsx :: 91:9   error    'appleLink' is never reassigned. Use 'const' instead  prefer-const
+E:\food-app\src\__tests__\push-notifications.test.ts :: 652:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+E:\food-app\src\__tests__\push-notifications.test.ts :: 659:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+E:\food-app\src\__tests__\push-notifications.test.ts :: 664:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+E:\food-app\src\__tests__\push-notifications.test.ts :: 669:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+E:\food-app\src\__tests__\push-notifications.test.ts :: 674:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+E:\food-app\src\components\PushNotificationModal.tsx :: 58:9   warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+E:\food-app\src\components\PushNotificationModal.tsx :: 83:15  warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+E:\food-app\src\pages\Admin.tsx :: 706:5    warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+E:\food-app\src\pages\Admin.tsx :: 1028:11   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+E:\food-app\src\pages\Admin.tsx :: 2456:17   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+E:\food-app\src\pages\Admin.tsx :: 2469:19   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                 no-console
+E:\food-app\src\pages\Checkout.tsx :: 150:15  error    Empty block statement                                                                                                                                                                                       no-empty
+E:\food-app\src\pages\Checkout.tsx :: 161:15  error    Empty block statement                                                                                                                                                                                       no-empty
+E:\food-app\src\pages\Checkout.tsx :: 171:15  error    Empty block statement                                                                                                                                                                                       no-empty
+E:\food-app\src\pages\Checkout.tsx :: 192:17  error    Empty block statement                                                                                                                                                                                       no-empty
+E:\food-app\src\pages\Checkout.tsx :: 298:17  error    Empty block statement                                                                                                                                                                                       no-empty
+E:\food-app\src\pages\Checkout.tsx :: 1251:17  error    Empty block statement                                                                                                                                                                                       no-empty
+E:\food-app\src\pages\UserProfile.tsx :: 165:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+E:\food-app\src\pages\admin\components\AdminTrackingMap.tsx :: 72:58  error    Empty block statement                     no-empty
+E:\food-app\src\pages\admin\components\AdminTrackingMap.tsx :: 109:60  error    Empty block statement                     no-empty
+E:\food-app\src\pages\admin\components\PromotionForm.tsx :: 66:11  warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+E:\food-app\src\pages\admin\sections\RolesSection.tsx :: 35:19  warning  'error' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx :: 8:64  error  'window' is not defined  no-undef
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx :: 45:64  error  'window' is not defined  no-undef
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx :: 63:69  error  'window' is not defined  no-undef
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx :: 70:79  error  'window' is not defined  no-undef
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx :: 90:64  error  'window' is not defined  no-undef
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx :: 134:69  error  'window' is not defined  no-undef
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx :: 170:70  error  'window' is not defined  no-undef
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx :: 184:70  error  'window' is not defined  no-undef
+E:\food-app\src\store\AppContext.tsx :: 1425:13  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 1612:13  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 1683:9   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 1710:11  warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 1720:7   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 2160:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 2174:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 2337:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 2346:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 2351:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 2356:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 2964:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 3013:5   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\store\AppContext.tsx :: 3093:9   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                        no-console
+E:\food-app\src\vite-env.d.ts :: Ô£û 384 problems (22 errors, 362 warnings)
+E:\food-app\src\vite-env.d.ts :: 1 error and 0 warnings potentially fixable with the `--fix` option.

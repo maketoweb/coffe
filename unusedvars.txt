@@ -1,0 +1,172 @@
+E:\food-app\src\App.tsx :: 22:94  warning  'userRole' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\checkout-flow.test.tsx :: 1:8   warning  'React' is defined but never used      @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\checkout-flow.test.tsx :: 3:10  warning  'render' is defined but never used     @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\checkout-flow.test.tsx :: 3:18  warning  'screen' is defined but never used     @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\checkout-flow.test.tsx :: 3:26  warning  'fireEvent' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\checkout-flow.test.tsx :: 3:37  warning  'waitFor' is defined but never used    @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\guest-checkout.test.tsx :: 1:8   warning  'React' is defined but never used                @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\guest-checkout.test.tsx :: 2:32  warning  'vi' is defined but never used                   @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\guest-checkout.test.tsx :: 2:36  warning  'beforeEach' is defined but never used           @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\guest-checkout.test.tsx :: 3:10  warning  'render' is defined but never used               @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\guest-checkout.test.tsx :: 3:18  warning  'screen' is defined but never used               @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\guest-checkout.test.tsx :: 3:26  warning  'fireEvent' is defined but never used            @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\guest-checkout.test.tsx :: 3:37  warning  'waitFor' is defined but never used              @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\guest-checkout.test.tsx :: 11:9   warning  'mockConfig' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\__tests__\push-notifications.test.ts :: 8:48  warning  'afterEach' is defined but never used     @typescript-eslint/no-unused-vars
+E:\food-app\src\components\BarcodeScanner.tsx :: 2:29  warning  'X' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\CartUpsell.tsx :: 17:9  warning  'cartCategoryIds' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\CheckoutModal.tsx :: 3:26  warning  'MapPin' is defined but never used                    @typescript-eslint/no-unused-vars
+E:\food-app\src\components\CheckoutModal.tsx :: 11:85  warning  'displayCurrency' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\FlashSaleTimer.tsx :: 2:22  warning  'Flame' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\Navigation.tsx :: 4:11  warning  'Tag' is defined but never used                                                        @typescript-eslint/no-unused-vars
+E:\food-app\src\components\Navigation.tsx :: 5:46  warning  'Search' is defined but never used                                                     @typescript-eslint/no-unused-vars
+E:\food-app\src\components\Navigation.tsx :: 35:3   warning  'onTriggerAdminLogin' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\Navigation.tsx :: 42:9   warning  'logoUrl' is assigned a value but never used                                           @typescript-eslint/no-unused-vars
+E:\food-app\src\components\OrderTracker.tsx :: 3:81   warning  'Star' is defined but never used        @typescript-eslint/no-unused-vars
+E:\food-app\src\components\OrderTracker.tsx :: 3:100  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\OrderTracker.tsx :: 4:17   warning  'FoodItem' is defined but never used    @typescript-eslint/no-unused-vars
+E:\food-app\src\components\PremiumProductCard.tsx :: 3:50  warning  'Eye' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\ProductCard.tsx :: 23:3  warning  'isOffer' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\ProductModal.tsx :: 3:20  warning  'StoreConfig' is defined but never used                                                                     @typescript-eslint/no-unused-vars
+E:\food-app\src\components\ProductReviews.tsx :: 4:31  warning  'X' is defined but never used                                                  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\ProductReviews.tsx :: 22:3   warning  'productId' is defined but never used. Allowed unused args must match /^_/u    @typescript-eslint/no-unused-vars
+E:\food-app\src\components\ProductReviews.tsx :: 23:3   warning  'productName' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\PromoPushSender.tsx :: 2:33  warning  'Clock' is defined but never used         @typescript-eslint/no-unused-vars
+E:\food-app\src\components\PromoPushSender.tsx :: 2:40  warning  'Calendar' is defined but never used      @typescript-eslint/no-unused-vars
+E:\food-app\src\components\PushNotificationModal.tsx :: 4:16  warning  'ShieldAlert' is defined but never used                                            @typescript-eslint/no-unused-vars
+E:\food-app\src\components\PushNotificationModal.tsx :: 4:29  warning  'Sparkles' is defined but never used                                               @typescript-eslint/no-unused-vars
+E:\food-app\src\components\PushNotificationModal.tsx :: 4:42  warning  'ChevronRight' is defined but never used                                           @typescript-eslint/no-unused-vars
+E:\food-app\src\components\PushNotificationModal.tsx :: 4:56  warning  'Truck' is defined but never used                                                  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\PushNotificationModal.tsx :: 4:63  warning  'Info' is defined but never used                                                   @typescript-eslint/no-unused-vars
+E:\food-app\src\components\PushNotificationModal.tsx :: 4:69  warning  'Percent' is defined but never used                                                @typescript-eslint/no-unused-vars
+E:\food-app\src\components\PushNotificationModal.tsx :: 21:10  warning  'permissionType' is assigned a value but never used                                @typescript-eslint/no-unused-vars
+E:\food-app\src\components\StarRating.tsx :: 21:3  warning  'themeColor' is assigned a value but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\StickyCart.tsx :: 22:9  warning  'lastItem' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\components\__tests__\ProductCard.test.tsx :: 2:36  warning  'beforeEach' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 4:56   warning  'getPublicUrl' is defined but never used                                                                                                          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 8:24   warning  'Truck' is defined but never used                                                                                                                 @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 8:31   warning  'PackageCheck' is defined but never used                                                                                                          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 9:174  warning  'AlertCircle' is defined but never used                                                                                                           @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 331:47   warning  'setTab' is defined but never used. Allowed unused args must match /^_/u                                                                          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 335:59   warning  'toggleNotificationReadStatus' is assigned a value but never used                                                                                 @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 338:53   warning  'clearAllNotifications' is assigned a value but never used                                                                                        @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 414:10   warning  'uploadFormat' is assigned a value but never used                                                                                                 @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 414:24   warning  'setUploadFormat' is assigned a value but never used                                                                                              @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 558:9    warning  'handleEditorSubmit' is assigned a value but never used                                                                                           @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 558:31   warning  'e' is defined but never used. Allowed unused args must match /^_/u                                                                               @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 678:16   warning  'err' is defined but never used                                                                                                                   @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 938:16   warning  'e' is defined but never used                                                                                                                     @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 972:18   warning  'e' is defined but never used                                                                                                                     @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Admin.tsx :: 2401:28   warning  'e' is defined but never used                                                                                                                     @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Checkout.tsx :: 4:46  warning  'User' is defined but never used                                                                                                                                                                            @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Checkout.tsx :: 80:10  warning  'showAlgoMas' is assigned a value but never used                                                                                                                                                            @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Checkout.tsx :: 80:23  warning  'setShowAlgoMas' is assigned a value but never used                                                                                                                                                         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Checkout.tsx :: 262:9   warning  'handleLocationPicked' is assigned a value but never used                                                                                                                                                   @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Checkout.tsx :: 605:31  warning  'extrasTotal' is assigned a value but never used                                                                                                                                                            @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\Home.tsx :: 54:72  warning  'promotions' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 23:5   warning  'users' is assigned a value but never used                                         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 39:5   warning  'hapticEnabled' is assigned a value but never used                                 @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 40:5   warning  'toggleHaptic' is assigned a value but never used                                  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 48:5   warning  'markUserAsPwaInstalled' is assigned a value but never used                        @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 88:10  warning  'notifSubTab' is assigned a value but never used                                   @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 88:23  warning  'setNotifSubTab' is assigned a value but never used                                @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 90:10  warning  'replyMessage' is assigned a value but never used                                  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 90:24  warning  'setReplyMessage' is assigned a value but never used                               @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 164:9   warning  'sendTestPushNotification' is assigned a value but never used                      @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 203:10  warning  'updateSuccess' is assigned a value but never used                                 @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\UserProfile.tsx :: 908:50  warning  'arr' is defined but never used. Allowed unused args must match /^_/u              @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\AdminTrackingMap.tsx :: 72:55  warning  'e' is defined but never used             @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\AdminTrackingMap.tsx :: 109:57  warning  'e' is defined but never used             @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\BrandingEditor.tsx :: 3:19  warning  'Upload' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\OrderCard.tsx :: 3:65  warning  'CheckCircle' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\OrderCard.tsx :: 3:78  warning  'Truck' is defined but never used        @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\ProductForm.tsx :: 3:19  warning  'Upload' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\ProductPreviewModal.tsx :: 3:13  warning  'Star' is defined but never used          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\PromotionCard.tsx :: 3:15  warning  'EyeOff' is defined but never used     @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\PromotionCard.tsx :: 3:37  warning  'BarChart3' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\SedeForm.tsx :: 3:31  warning  'MessageCircle' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\components\SedeForm.tsx :: 3:46  warning  'Image' is defined but never used          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\index.tsx :: 8:54  warning  'FileText' is defined but never used                @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\index.tsx :: 72:19  warning  'foodItems' is assigned a value but never used      @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\index.tsx :: 86:10  warning  'sendMsgTitle' is assigned a value but never used   @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\index.tsx :: 87:10  warning  'sendMsgBody' is assigned a value but never used    @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\index.tsx :: 88:10  warning  'sendMsgModal' is assigned a value but never used   @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\index.tsx :: 89:10  warning  'printingOrder' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\ChatSection.tsx :: 3:74  warning  'Settings' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\CombosSection.tsx :: 3:49  warning  'Percent' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\CouponsSection.tsx :: 3:32  warning  'Check' is defined but never used         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\DashboardSection.tsx :: 87:16  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\DashboardSection.tsx :: 118:18  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\InventorySection.tsx :: 4:10  warning  'uploadFileToStorage' is defined but never used                                                               @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\InventorySection.tsx :: 4:31  warning  'compressImage' is defined but never used                                                                     @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\LoyaltySection.tsx :: 6:3   warning  'Star' is defined but never used          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\LoyaltySection.tsx :: 6:9   warning  'TrendingUp' is defined but never used    @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\LoyaltySection.tsx :: 6:47  warning  'Smartphone' is defined but never used    @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\LoyaltySection.tsx :: 6:59  warning  'Package' is defined but never used       @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\LoyaltySection.tsx :: 7:3   warning  'ToggleLeft' is defined but never used    @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\LoyaltySection.tsx :: 7:15  warning  'ToggleRight' is defined but never used   @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\LoyaltySection.tsx :: 7:41  warning  'ChevronRight' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\NotificationsSection.tsx :: 8:16  warning  'config' is assigned a value but never used         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\NotificationsSection.tsx :: 8:24  warning  'notifications' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\NotificationsSection.tsx :: 8:39  warning  'currentUser' is assigned a value but never used    @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\OrdersSection.tsx :: 44:3  warning  'editingOrderItems' is defined but never used. Allowed unused args must match /^_/u     @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\OrdersSection.tsx :: 45:3  warning  'setEditingOrderItems' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\RolesSection.tsx :: 35:19  warning  'error' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 8:49   warning  'AlertTriangle' is defined but never used                                 @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 162:60   warning  'setTab' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 165:52   warning  'searchItems' is assigned a value but never used                          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 166:35   warning  'updateExchangeRate' is assigned a value but never used                   @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 166:55   warning  'syncPushSubscription' is assigned a value but never used                 @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 168:5    warning  'updateAdminCredentials' is assigned a value but never used               @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 168:51   warning  'updateUserByAdmin' is assigned a value but never used                    @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 169:14   warning  'addCoupon' is assigned a value but never used                            @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 169:25   warning  'updateCoupon' is assigned a value but never used                         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 169:39   warning  'deleteCoupon' is assigned a value but never used                         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 177:10   warning  'isListening' is assigned a value but never used                          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 177:23   warning  'setIsListening' is assigned a value but never used                       @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 189:10   warning  'toastMessage' is assigned a value but never used                         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 190:10   warning  'toastTitle' is assigned a value but never used                           @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 193:10   warning  'newAdminUser' is assigned a value but never used                         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 193:24   warning  'setNewAdminUser' is assigned a value but never used                      @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 194:10   warning  'newAdminPass' is assigned a value but never used                         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 194:24   warning  'setNewAdminPass' is assigned a value but never used                      @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 195:10   warning  'showAdminPass' is assigned a value but never used                        @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 195:25   warning  'setShowAdminPass' is assigned a value but never used                     @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 196:10   warning  'editingZone' is assigned a value but never used                          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 196:23   warning  'setEditingZone' is assigned a value but never used                       @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 197:10   warning  'newZoneName' is assigned a value but never used                          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 197:23   warning  'setNewZoneName' is assigned a value but never used                       @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 198:10   warning  'newZoneCost' is assigned a value but never used                          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 198:23   warning  'setNewZoneCost' is assigned a value but never used                       @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 199:10   warning  'newZoneMinKm' is assigned a value but never used                         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 199:24   warning  'setNewZoneMinKm' is assigned a value but never used                      @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 200:10   warning  'newZoneMaxKm' is assigned a value but never used                         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 200:24   warning  'setNewZoneMaxKm' is assigned a value but never used                      @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\SettingsSection.tsx :: 304:16   warning  'err' is defined but never used                                           @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\TiendaSection.tsx :: 24:9    warning  'bannerInputRef' is assigned a value but never used      @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\TiendaSection.tsx :: 25:10   warning  'uploadingBanner' is assigned a value but never used     @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\TiendaSection.tsx :: 102:9    warning  'handleBannerUpload' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\TrackingSection.tsx :: 5:57  warning  'Filter' is defined but never used                  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\TrackingSection.tsx :: 56:9   warning  'selectedOrder' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\AutomationsManager.tsx :: 9:9  warning  'themeColor' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\CampaignCreator.tsx :: 4:36  warning  'AlertCircle' is defined but never used          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\CampaignCreator.tsx :: 19:9   warning  'themeColor' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\PushAnalytics.tsx :: 3:10  warning  'BarChart3' is defined but never used          @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\PushAnalytics.tsx :: 3:21  warning  'MousePointerClick' is defined but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\PushAnalytics.tsx :: 3:40  warning  'Send' is defined but never used               @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\PushAnalytics.tsx :: 3:46  warning  'TrendingUp' is defined but never used         @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\PushAnalytics.tsx :: 6:10  warning  'events' is assigned a value but never used    @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx :: 4:10  warning  'Users' is defined but never used            @typescript-eslint/no-unused-vars
+E:\food-app\src\pages\admin\sections\marketing\SegmentsViewer.tsx :: 18:11  warning  'config' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\security\__tests__\security.test.ts :: 1:32  warning  'vi' is defined but never used                   @typescript-eslint/no-unused-vars
+E:\food-app\src\security\__tests__\security.test.ts :: 1:36  warning  'beforeEach' is defined but never used           @typescript-eslint/no-unused-vars
+E:\food-app\src\security\__tests__\security.test.ts :: 10:11  warning  'escapeHtml' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\security\__tests__\security.test.ts :: 31:11  warning  'escapeHtml' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\security\__tests__\security.test.ts :: 49:11  warning  'escapeHtml' is assigned a value but never used  @typescript-eslint/no-unused-vars
+E:\food-app\src\security\__tests__\security.test.ts :: 204:11  warning  'maskPhone' is assigned a value but never used   @typescript-eslint/no-unused-vars
+E:\food-app\src\store\AppContext.tsx :: 1200:16  warning  'e' is defined but never used                                                                                            @typescript-eslint/no-unused-vars
+E:\food-app\src\store\AppContext.tsx :: 2439:16  warning  'e' is defined but never used                                                                                            @typescript-eslint/no-unused-vars
+E:\food-app\src\store\AppContext.tsx :: 2458:18  warning  'e' is defined but never used                                                                                            @typescript-eslint/no-unused-vars
+E:\food-app\src\store\AppContext.tsx :: 3165:14  warning  'err' is defined but never used                                                                                          @typescript-eslint/no-unused-vars
+E:\food-app\src\test\setup.ts :: 71:46  warning  'data' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+E:\food-app\src\utils\__tests__\helpers.test.ts :: 22:17  warning  'cat' is assigned a value but never used  @typescript-eslint/no-unused-vars

@@ -1,0 +1,51 @@
+{
+  "id": "/admin",
+  "name": "Market Coffee Admin Panel",
+  "short_name": "Market Coffee Admin",
+  "description": "Panel de administración de Market Coffee. Gestiona pedidos, productos, inventario y más.",
+  "start_url": "/admin",
+  "scope": "/admin",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#FF6B35",
+  "background_color": "#FF6B35",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "url": "/admin",
+      "description": "Panel principal con métricas y resumen",
+      "icons": [{"src": "/pwa-192x192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Órdenes",
+      "short_name": "Órdenes",
+      "url": "/admin?tab=orders",
+      "description": "Gestionar pedidos activos e historial",
+      "icons": [{"src": "/pwa-192x192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Productos",
+      "short_name": "Productos",
+      "url": "/admin?tab=products",
+      "description": "Administrar catálogo de productos",
+      "icons": [{"src": "/pwa-192x192.png", "sizes": "192x192"}]
+    }
+  ]
+}
