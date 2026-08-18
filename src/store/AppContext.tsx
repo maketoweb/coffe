@@ -1317,19 +1317,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
       try {
 
-      // BUG FIX: Si es admin/operador, cargar TODO. Obtener sesión primero.
+      // BUG FIX: Si es admin/operador/customer, cargar TODO. Obtener sesión primero.
       const { data: { session } } = await supabase.auth.getSession();
       const sessionEmail = session?.user?.email || '';
-      const sessionRole = session?.user?.app_metadata?.role;
+      const sessionRole = session?.user?.app_metadata?.role || session?.user?.user_metadata?.role;
       const isAdmin = sessionEmail === 'kecho8a@gmail.com' || sessionRole === 'admin';
       const isOperator = sessionRole === 'operator';
+      const isCustomer = sessionRole === 'customer';
 
       // Si localStorage dice admin y hay sesión válida, mantener el flag
-      if ((isAdmin || isOperator) && localStorage.getItem('trv_admin_auth') !== 'true') {
+      if ((isAdmin || isOperator || isCustomer) && localStorage.getItem('trv_admin_auth') !== 'true') {
         localStorage.setItem('trv_admin_auth', 'true');
         setIsAdminAuthenticated(true);
-      } else if (!isAdmin && !isOperator && localStorage.getItem('trv_admin_auth') === 'true' && session) {
-        // Sesión existe pero no es admin/operator - limpiar flag
+      } else if (!isAdmin && !isOperator && !isCustomer && localStorage.getItem('trv_admin_auth') === 'true' && session) {
+        // Sesión existe pero no es admin/operator/customer - limpiar flag
         localStorage.removeItem('trv_admin_auth');
         setIsAdminAuthenticated(false);
         setUserRole(null);
@@ -1337,7 +1338,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
 
       // Sincronizar rol desde la sesión
-      if (isAdmin || isOperator) {
+      if (isAdmin || isOperator || isCustomer) {
         if (isAdmin) {
           setUserRole('admin');
           localStorage.setItem('trv_user_role', 'admin');
@@ -1359,6 +1360,28 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             localStorage.setItem('trv_admin_scope_sede', scopeSede);
           } else {
             // Operador desactivado, cerrar sesión
+            setIsAdminAuthenticated(false);
+            setUserRole(null);
+            localStorage.removeItem('trv_admin_auth');
+            localStorage.removeItem('trv_user_role');
+            localStorage.removeItem('trv_admin_scope_sede');
+            setAdminScopeSedeId('');
+            await supabase.auth.signOut();
+          }
+        } else if (isCustomer) {
+          const { data: custRecord } = await supabase
+            .from('admin_users')
+            .select('active, sede_id')
+            .eq('id', session!.user.id)
+            .single();
+
+          if (custRecord && custRecord.active !== false) {
+            setUserRole('customer');
+            localStorage.setItem('trv_user_role', 'customer');
+            const scopeSede = custRecord.sede_id || '';
+            setAdminScopeSedeId(scopeSede);
+            localStorage.setItem('trv_admin_scope_sede', scopeSede);
+          } else {
             setIsAdminAuthenticated(false);
             setUserRole(null);
             localStorage.removeItem('trv_admin_auth');
@@ -1596,14 +1619,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
         if (session) {
           const sessionEmail = session.user?.email || '';
-          const sessionRole = session.user?.app_metadata?.role;
+          const sessionRole = session.user?.app_metadata?.role || session.user?.user_metadata?.role;
           const isAdmin = sessionEmail === 'kecho8a@gmail.com' || sessionRole === 'admin';
           const isOperator = sessionRole === 'operator';
-          if (isAdmin || isOperator) {
+          const isCustomer = sessionRole === 'customer';
+          if (isAdmin || isOperator || isCustomer) {
             setIsAdminAuthenticated(true);
             localStorage.setItem('trv_admin_auth', 'true');
-            setUserRole(isAdmin ? 'admin' : 'operator');
-            localStorage.setItem('trv_user_role', isAdmin ? 'admin' : 'operator');
+            const roleStr = isAdmin ? 'admin' : isOperator ? 'operator' : 'customer';
+            setUserRole(roleStr);
+            localStorage.setItem('trv_user_role', roleStr);
             // Reintentar sync de config pendiente cuando la sesión se restaura
             if (Object.keys(pendingConfigRef.current).length > 0) {
               const settingsToSave = { ...pendingConfigRef.current };
@@ -1638,14 +1663,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           supabase.auth.getSession().then(({ data: { session: restoredSession } }) => {
             if (restoredSession) {
               const sessionEmail = restoredSession.user?.email || '';
-              const sessionRole = restoredSession.user?.app_metadata?.role;
+              const sessionRole = restoredSession.user?.app_metadata?.role || restoredSession.user?.user_metadata?.role;
               const isAdmin = sessionEmail === 'kecho8a@gmail.com' || sessionRole === 'admin';
               const isOperator = sessionRole === 'operator';
-              if (isAdmin || isOperator) {
+              const isCustomer = sessionRole === 'customer';
+              if (isAdmin || isOperator || isCustomer) {
                 setIsAdminAuthenticated(true);
                 localStorage.setItem('trv_admin_auth', 'true');
-                setUserRole(isAdmin ? 'admin' : 'operator');
-                localStorage.setItem('trv_user_role', isAdmin ? 'admin' : 'operator');
+                const roleStr = isAdmin ? 'admin' : isOperator ? 'operator' : 'customer';
+                setUserRole(roleStr);
+                localStorage.setItem('trv_user_role', roleStr);
                 return;
               }
             }
@@ -2731,7 +2758,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
       if (data.session) {
         const sessionEmail = data.session.user?.email || '';
-        const appRole = data.session.user?.app_metadata?.role;
+        const appRole = data.session.user?.app_metadata?.role || data.session.user?.user_metadata?.role;
         const isAdminEmail = sessionEmail === 'kecho8a@gmail.com';
         const isAdminRole = appRole === 'admin';
         const isOperatorRole = appRole === 'operator';

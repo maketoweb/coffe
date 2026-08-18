@@ -6,6 +6,42 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL || '').trim();
 const supabaseAnonKey = (import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim();
 
+// ═══ MOCK AUTH para testing sin Supabase ═══
+const MOCK_USERS_KEY = 'trv_mock_users';
+const MOCK_SESSION_KEY = 'trv_mock_session';
+
+interface MockUser {
+  id: string;
+  email: string;
+  password: string;
+  user_metadata: Record<string, unknown>;
+  app_metadata: Record<string, unknown>;
+  created_at: string;
+}
+
+const getMockUsers = (): MockUser[] => {
+  try {
+    const stored = localStorage.getItem(MOCK_USERS_KEY);
+    if (stored) return JSON.parse(stored);
+  } catch { /* ignore */ }
+  // Usuarios por defecto
+  const defaults: MockUser[] = [
+    { id: 'admin-001', email: 'kecho8a@gmail.com', password: 'admin123', user_metadata: { nombre: 'Admin', role: 'admin' }, app_metadata: { role: 'admin' }, created_at: new Date().toISOString() },
+    { id: 'operator-001', email: 'op@gmail.com', password: '123456', user_metadata: { nombre: 'Operador', role: 'operator' }, app_metadata: { role: 'operator' }, created_at: new Date().toISOString() },
+    { id: 'customer-001', email: 'custo@gmail.com', password: '123456', user_metadata: { nombre: 'Cliente', role: 'customer' }, app_metadata: { role: 'customer' }, created_at: new Date().toISOString() },
+  ];
+  localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(defaults));
+  return defaults;
+};
+
+const saveMockUsers = (users: MockUser[]) => localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
+
+const createMockSession = (user: MockUser) => ({
+  user: { id: user.id, email: user.email, user_metadata: user.user_metadata, app_metadata: user.app_metadata },
+  access_token: 'mock-token-' + user.id,
+  expires_at: Date.now() + 3600000,
+});
+
 const createMockClient = (): SupabaseClient => {
   const mock: any = {
     from: () => mock,
@@ -51,12 +87,72 @@ const createMockClient = (): SupabaseClient => {
       }),
     },
     auth: {
-      getSession: async () => ({ data: { session: null }, error: null }),
-      getUser: async () => ({ data: { user: null }, error: null }),
-      signInWithPassword: async () => ({ data: { user: null, session: null }, error: null }),
-      signUp: async () => ({ data: { user: null, session: null }, error: null }),
-      signOut: async () => ({ error: null }),
-      updateUser: async () => ({ data: { user: null }, error: null }),
+      getSession: async () => {
+        try {
+          const stored = localStorage.getItem(MOCK_SESSION_KEY);
+          if (stored) {
+            const session = JSON.parse(stored);
+            if (session.expires_at > Date.now()) return { data: { session }, error: null };
+            localStorage.removeItem(MOCK_SESSION_KEY);
+          }
+        } catch { /* ignore */ }
+        return { data: { session: null }, error: null };
+      },
+      getUser: async () => {
+        try {
+          const stored = localStorage.getItem(MOCK_SESSION_KEY);
+          if (stored) {
+            const session = JSON.parse(stored);
+            return { data: { user: session.user }, error: null };
+          }
+        } catch { /* ignore */ }
+        return { data: { user: null }, error: null };
+      },
+      signInWithPassword: async ({ email, password }: { email: string; password: string }) => {
+        const users = getMockUsers();
+        const user = users.find(u => u.email === email.trim().toLowerCase() && u.password === password.trim());
+        if (!user) return { data: { user: null, session: null }, error: { message: 'Credenciales incorrectas' } };
+        const session = createMockSession(user);
+        localStorage.setItem(MOCK_SESSION_KEY, JSON.stringify(session));
+        return { data: { user: session.user, session }, error: null };
+      },
+      signUp: async ({ email, password, options }: { email: string; password: string; options?: { data?: Record<string, unknown> } }) => {
+        const users = getMockUsers();
+        if (users.find(u => u.email === email.trim().toLowerCase())) {
+          return { data: { user: null, session: null }, error: { message: 'El usuario ya existe' } };
+        }
+        const newUser: MockUser = {
+          id: 'mock-' + Date.now(),
+          email: email.trim().toLowerCase(),
+          password: password.trim(),
+          user_metadata: options?.data || {},
+          app_metadata: {},
+          created_at: new Date().toISOString(),
+        };
+        users.push(newUser);
+        saveMockUsers(users);
+        const session = createMockSession(newUser);
+        localStorage.setItem(MOCK_SESSION_KEY, JSON.stringify(session));
+        return { data: { user: session.user, session }, error: null };
+      },
+      signOut: async () => {
+        localStorage.removeItem(MOCK_SESSION_KEY);
+        return { error: null };
+      },
+      updateUser: async ({ password }: { password?: string }) => {
+        try {
+          const stored = localStorage.getItem(MOCK_SESSION_KEY);
+          if (stored) {
+            const session = JSON.parse(stored);
+            if (password) {
+              const users = getMockUsers();
+              const idx = users.findIndex(u => u.id === session.user.id);
+              if (idx >= 0) { users[idx].password = password; saveMockUsers(users); }
+            }
+          }
+        } catch { /* ignore */ }
+        return { data: { user: null }, error: null };
+      },
       resetPasswordForEmail: async () => ({ data: null, error: null }),
       onAuthStateChange: () => ({
         data: {
