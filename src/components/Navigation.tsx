@@ -66,10 +66,12 @@ export const Navigation: React.FC<NavigationProps> = ({
       <header
         className="hidden lg:flex fixed top-0 left-0 right-0 z-50 h-16 items-center transition-all duration-300"
         style={{
-          background: isDarkMode ? 'rgba(15, 15, 26, 0.7)' : 'rgba(249, 249, 251, 0.6)',
+          background: isDarkMode 
+            ? `${themeColor}E6`
+            : `${themeColor}CC`,
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          borderBottom: isDarkMode ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(228, 190, 177, 0.2)',
+          borderBottom: isDarkMode ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(0, 0, 0, 0.1)',
         }}
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between px-8 h-full">
@@ -81,7 +83,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               onClick={() => setSidebarOpen(true)}
               className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#e4beb1]/20 transition-colors cursor-pointer active:scale-95"
               aria-label="Abrir menú de categorías"
-              style={{ color: themeColor }}
+              style={{ color: 'white' }}
             >
               <Menu size={22} strokeWidth={1.8} />
             </button>
@@ -92,11 +94,11 @@ export const Navigation: React.FC<NavigationProps> = ({
               className="flex items-center gap-3 shrink-0 cursor-pointer group"
             >
               {config.logo_url ? (
-                <img src={config.logo_url} alt={config.site_nombre || 'Market Coffee Sweet'} className="h-[50px] w-auto max-w-[200px] object-contain" />
+                <img src={config.logo_url} alt={config.site_nombre || 'Market Coffee Sweet'} className="h-[70px] w-auto max-w-[200px] object-contain" />
               ) : (
                 <h1
                   className="text-xl font-extrabold tracking-tighter"
-                  style={{ color: themeColor, fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                  style={{ color: 'white', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                 >
                   {config.site_nombre || 'Market Coffee Sweet'}
                 </h1>
@@ -122,7 +124,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                       ? 'text-white shadow-md'
                       : 'hover:opacity-80'
                   }`}
-                  style={isActive ? { backgroundColor: themeColor } : { color: isDarkMode ? '#a0a0b8' : '#5b4137' }}
+                  style={isActive ? { backgroundColor: 'rgba(255,255,255,0.25)', color: 'white' } : { color: 'rgba(255,255,255,0.85)' }}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {link.label}
@@ -136,10 +138,10 @@ export const Navigation: React.FC<NavigationProps> = ({
             <button
               type="button"
               onClick={toggleDarkMode}
-              className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#e4beb1]/20 dark:hover:bg-white/10 transition-colors cursor-pointer"
+              className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors cursor-pointer"
               aria-label={isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
             >
-              {isDarkMode ? <Sun size={20} className="text-amber-400" /> : <Moon size={20} className="text-[#5b4137]" />}
+              {isDarkMode ? <Sun size={20} className="text-amber-300" /> : <Moon size={20} className="text-white" />}
             </button>
 
             {currentUser ? (
@@ -147,7 +149,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                 <button
                   type="button"
                   onClick={() => setTab('profile')}
-                  className="text-[13px] font-semibold tracking-wide text-[#5b4137] hover:text-[#1a1c1d] transition-colors cursor-pointer rounded-full px-3 py-1.5"
+                  className="text-[13px] font-semibold tracking-wide text-white/90 hover:text-white transition-colors cursor-pointer rounded-full px-3 py-1.5"
                 >
                   HOLA, {currentUser.nombre.split(' ')[0].toUpperCase()}
                 </button>
@@ -156,7 +158,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               <button
                 type="button"
                 onClick={() => setTab('profile')}
-                className="text-[13px] font-semibold tracking-wide text-[#5b4137] hover:text-[#1a1c1d] transition-colors cursor-pointer rounded-full px-3 py-1.5"
+                className="text-[13px] font-semibold tracking-wide text-white/90 hover:text-white transition-colors cursor-pointer rounded-full px-3 py-1.5"
               >
                 INICIAR SESIÓN
               </button>
@@ -165,10 +167,10 @@ export const Navigation: React.FC<NavigationProps> = ({
             <button
               type="button"
               onClick={() => setTab('checkout')}
-              className="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#e4beb1]/20 transition-colors cursor-pointer"
+              className="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors cursor-pointer"
               aria-label={`Carrito de compras, ${cartCount} artículos`}
             >
-              <ShoppingCart size={22} style={{ color: isDarkMode ? '#e8e8f0' : '#1a1c1d' }} strokeWidth={1.5} />
+              <ShoppingCart size={22} style={{ color: 'white' }} strokeWidth={1.5} />
               {cartCount > 0 && (
                 <span
                   className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-white text-[10px] font-bold px-1 leading-none"
@@ -362,10 +364,12 @@ export const Navigation: React.FC<NavigationProps> = ({
       <header
         className="lg:hidden fixed top-0 left-0 right-0 z-50 h-16 flex items-center justify-between px-4 transition-all duration-300"
         style={{
-          background: isDarkMode ? 'rgba(15, 15, 26, 0.7)' : 'rgba(249, 249, 251, 0.6)',
+          background: isDarkMode 
+            ? `${themeColor}E6`
+            : `${themeColor}CC`,
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          borderBottom: isDarkMode ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(228, 190, 177, 0.2)',
+          borderBottom: isDarkMode ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(0, 0, 0, 0.1)',
         }}
       >
         <div className="flex items-center gap-3">
@@ -374,7 +378,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             onClick={() => setDrawerOpen(true)}
             className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#e4beb1]/20 transition-colors cursor-pointer active:scale-95"
             aria-label="Abrir menú"
-            style={{ color: themeColor }}
+            style={{ color: 'white' }}
           >
             <Menu size={22} strokeWidth={1.8} />
           </button>
@@ -389,7 +393,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               ) : (
                 <h1
                   className="text-lg font-extrabold tracking-tighter"
-                  style={{ color: themeColor, fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                  style={{ color: 'white', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                 >
                   {config.site_nombre || 'Market Coffee Sweet'}
                 </h1>

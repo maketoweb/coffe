@@ -631,9 +631,9 @@ const DEFAULT_CONFIG: StoreConfig = {
   direccion_fisica: 'Av. Principal, Local #12, Valencia',
   coordenadas_tienda: { lat: 10.198300, lng: -68.004400 },
   banners: [
-    'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200',
-    'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=1200',
-    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=1200'
+    'https://images.unsplash.com/photo-1784676527659-0f2e1a2fed48?w=1500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTA5fHxwYW4lMjBhcnRlc2FuYWx8ZW58MHwwfDB8fHwy',
+    'https://images.unsplash.com/photo-1653222470894-f0c46e707ae4?w=1500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODV8fGZydXRhcyUyMHklMjB2ZXJkdXJhc3xlbnwwfDB8MHx8fDI%3D',
+    'https://images.unsplash.com/photo-1643224191254-7d8dae331966?w=1500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhhbWJ1cmd1ZXNhJTIwY29tYm98ZW58MHwwfDB8fHwy'
   ],
   zelle_enabled: true,
   zelle_data: 'pagos@marketcoffee.com.ve',
