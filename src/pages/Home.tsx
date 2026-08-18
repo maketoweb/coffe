@@ -97,6 +97,8 @@ export const Home: React.FC<HomeProps> = ({
   const [activeCategory, setActiveCategory] = useState('Todas');
   const [activeSubcategory, setActiveSubcategory] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<string | null>(null);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
   const activeSedes = useMemo(() => (config.sedes || []).filter(s => s.activa), [config.sedes]);
   const [selectedSedeId, setSelectedSedeId] = useState<string>(() => {
@@ -1097,7 +1099,7 @@ export const Home: React.FC<HomeProps> = ({
 
       {/* ═══ 12. FOOTER ═══ */}
       <footer className="py-8 md:py-12 px-4 md:px-8 border-t" style={{ backgroundColor: isDarkMode ? '#0a0a14' : '#f3f3f5', borderColor: cardBorder }}>
-        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 mb-8">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mb-8">
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
             {config.logo_url ? <img src={config.logo_url} alt={config.site_nombre} className="h-7 w-auto mb-4" />
               : <h4 className="text-base font-extrabold mb-4" style={{ color: tc }}>{config.site_nombre || 'Market Coffee Sweet'}</h4>}
@@ -1119,19 +1121,11 @@ export const Home: React.FC<HomeProps> = ({
             </ul>
           </div>
           <div>
-            <h5 className="font-bold mb-3 uppercase tracking-widest text-[10px]" style={{ color: text1 }}>Compañía</h5>
-            <ul className="space-y-2 text-[11px]" style={{ color: text2 }}>
-              <li><button onClick={() => setTab('profile')} className="hover:opacity-80 transition-colors">Sobre Nosotros</button></li>
-              <li><button className="hover:opacity-80 transition-colors">Blog de Comida</button></li>
-              <li><button className="hover:opacity-80 transition-colors">Sostenibilidad</button></li>
-            </ul>
-          </div>
-          <div>
             <h5 className="font-bold mb-3 uppercase tracking-widest text-[10px]" style={{ color: text1 }}>Soporte</h5>
             <ul className="space-y-2 text-[11px]" style={{ color: text2 }}>
               <li><a href={`https://wa.me/${getWhatsApp().replace(/[+ ]/g, '')}`} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-colors flex items-center gap-1.5"><MessageCircle size={11} className="text-green-500" /> WhatsApp</a></li>
-              <li><button className="hover:opacity-80 transition-colors">Términos de Servicio</button></li>
-              <li><button className="hover:opacity-80 transition-colors">Privacidad</button></li>
+              <li><button onClick={() => setShowTermsModal(true)} className="hover:opacity-80 transition-colors">Terminos de Servicio</button></li>
+              <li><button onClick={() => setShowPrivacyModal(true)} className="hover:opacity-80 transition-colors">Politica de Privacidad</button></li>
               {onAdminClick && <li><button onClick={onAdminClick} className="hover:opacity-80 transition-colors">{isAdminAuthenticated ? 'Admin ✓' : 'Admin'}</button></li>}
             </ul>
           </div>
@@ -1139,9 +1133,119 @@ export const Home: React.FC<HomeProps> = ({
         <div className="max-w-[1440px] mx-auto pt-4 border-t flex flex-col md:flex-row justify-between items-center gap-2 text-[10px]"
           style={{ borderColor: cardBorder, color: isDarkMode ? '#5a5a7a' : '#8f7065' }}>
           <p>© {new Date().getFullYear()} {config.footer_copyright || config.site_nombre || 'Market Coffee Sweet'}. Todos los derechos reservados.</p>
-          <div className="flex gap-4"><span>{config.direccion_fisica || 'Bogotá • CDMX • Madrid'}</span></div>
+          <div className="flex gap-4"><span>{config.direccion_fisica || 'Venezuela'}</span></div>
         </div>
       </footer>
+
+      {/* ═══ MODAL TERMINOS DE SERVICIO ═══ */}
+      {showTermsModal && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[85vh] overflow-hidden flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-slate-100">
+              <h3 className="font-bold text-sm text-slate-800">Terminos de Servicio</h3>
+              <button onClick={() => setShowTermsModal(false)} className="p-1 rounded-lg hover:bg-slate-100 text-slate-400"><X size={16} /></button>
+            </div>
+            <div className="overflow-y-auto p-5 text-[11px] leading-relaxed text-slate-600 space-y-4">
+              <p className="text-[10px] text-slate-400">Ultima actualizacion: Julio 2026</p>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">1. Acceptacion de los Terminos</h4>
+                <p>Al acceder y utilizar la plataforma Market Coffee Sweet ("la Plataforma"), el usuario acepta presente terminos y condiciones. Si no esta de acuerdo, debe abstenerse de utilizar el servicio.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">2. Descripcion del Servicio</h4>
+                <p>Market Coffee Sweet es una plataforma de pedidos en linea que ofrece productos de mercado, panaderia y comida rapida con servicio de delivery. El servicio esta disponible exclusivamente en la Republica Bolivariana de Venezuela.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">3. Registro y Cuenta</h4>
+                <p>El usuario se compromete a proporcionar informacion veraz y actualizada durante el registro. Es responsable de mantener la confidencialidad de sus credenciales de acceso. Queda prohibido compartir cuentas con terceros.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">4. Pedidos y Pagos</h4>
+                <p>Los precios mostrados estan en Dolares Americanos (USD) y se convierten a la moneda local segun la tasa de cambio vigente. El pago se realiza contra entrega (efectivo, transferencia o punto de venta) segun las opciones disponibles en su zona. Los pedidos estan sujetos a disponibilidad de producto.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">5. Delivery y Entregas</h4>
+                <p>Los tiempos de entrega son estimados y pueden variar segun ubicacion, trafico y disponibilidad. Market Coffee Sweet no se hace responsable por demoras causadas por fuerza mayor. Las zonas de cobertura estan sujetas a disponibilidad.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">6. Politica de Devoluciones</h4>
+                <p>En caso de productos danados o pedidos incorrectos, el usuario debe comunicarse dentro de las 2 horas siguientes a la recepcion. Se ofrecera reemplazo o reembolso segun el caso. No se aceptan devoluciones de productos perecederos una vez entregados.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">7. Puntos de Fidelidad</h4>
+                <p>Los puntos acumulados son personales e intransferibles. No tienen valor monetario directo y no pueden canjearse por efectivo. Los puntos expiran segun la politica vigente. El uso indebido del sistema de puntos podra resultar en la suspension de la cuenta.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">8. Conducta del Usuario</h4>
+                <p>El usuario se compromete a no utilizar la plataforma para fines ilicitos, no interferir con su operacion, y no intentar acceder a areas restringidas. El uso indebido podra resultar en la suspension permanente de la cuenta.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">9. Limitacion de Responsabilidad</h4>
+                <p>Market Coffee Sweet actua como intermediario entre el usuario y los proveedores de productos. No somos fabricantes de los productos y limitamos nuestra responsabilidad por defectos de fabricacion. En ningun caso nuestra responsabilidad excedera el monto del pedido.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">10. Legislacion Aplicable</h4>
+                <p>Estos terminos se rigen por las leyes de la Republica Bolivariana de Venezuela. Cualquier controversia sera resuelta por los tribunales competentes de la jurisdiccion correspondiente.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ═══ MODAL POLITICA DE PRIVACIDAD ═══ */}
+      {showPrivacyModal && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[85vh] overflow-hidden flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-slate-100">
+              <h3 className="font-bold text-sm text-slate-800">Politica de Privacidad</h3>
+              <button onClick={() => setShowPrivacyModal(false)} className="p-1 rounded-lg hover:bg-slate-100 text-slate-400"><X size={16} /></button>
+            </div>
+            <div className="overflow-y-auto p-5 text-[11px] leading-relaxed text-slate-600 space-y-4">
+              <p className="text-[10px] text-slate-400">Ultima actualizacion: Julio 2026</p>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">1. Informacion que Recopilamos</h4>
+                <p>Recopilamos la siguiente informacion: nombre, numero de telefono, direccion de entrega, historial de pedidos, datos de uso de la plataforma y informacion del dispositivo (tipo de navegador, sistema operativo). Cuando el usuario se registra, tambien se recopila su correo electronico.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">2. Uso de la Informacion</h4>
+                <p>Utilizamos su informacion para: procesar y entregar pedidos, comunicarnos sobre su pedido, mejorar nuestro servicio, enviar notificaciones sobre promociones y ofertas (con su consentimiento), prevenir fraudes y cumplir con obligaciones legales.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">3. Compartir Informacion</h4>
+                <p>No vendemos ni compartimos su informacion personal con terceros, excepto: con repartidores para completar la entrega, con proveedores de servicios de pago, cuando lo requiera la ley, o con su consentimiento explicito.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">4. Seguridad de los Datos</h4>
+                <p>Implementamos medidas de seguridad tecnicas y organizativas para proteger su informacion. Utilizamos conexiones cifradas (HTTPS) y almacenamiento seguro. Sin embargo, ningun metodo de transmision por internet es 100% seguro.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">5. Cookies y Tecnologias de Rastreo</h4>
+                <p>Utilizamos cookies y tecnologias similares para mejorar su experiencia, recordar sus preferencias y analizar el uso de la plataforma. Puede configurar su navegador para rechazar cookies, aunque esto podria afectar la funcionalidad.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-style-800 mb-1">6. Sus Derechos</h4>
+                <p>Segun la Ley Organica de Proteccion de Datos Personales y su Reglamento de Venezuela, usted tiene derecho a: acceder a sus datos personales, solicitar su rectificacion o eliminacion, oponerse al tratamiento de sus datos, y solicitar la portabilidad de sus datos. Para ejercer estos derechos, contactenos a traves de WhatsApp.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">7. Retencion de Datos</h4>
+                <p>Conservamos su informacion personal mientras su cuenta este activa o sea necesaria para proporcionarle servicios. Despues de eliminar su cuenta, conservaremos algunos datos por el tiempo requerido por la ley o para fines legitimos de negocio.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">8. Menores de Edad</h4>
+                <p>Nuestro servicio no esta dirigido a menores de 18 anos. No recopilamos intencionalmente informacion de menores. Si descubrimos que hemos recopilado datos de un menor, los eliminaremos de inmediato.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">9. Cambios en esta Politica</h4>
+                <p>Nos reservamos el derecho de actualizar esta politica en cualquier momento. Los cambios importantes seran comunicados a traves de la plataforma o por correo electronico. El uso continuado de nuestros servicios despues de los cambios constituye aceptacion de la nueva politica.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-1">10. Contacto</h4>
+                <p>Para cualquier consulta sobre esta politica de privacidad o para ejercer sus derechos, puede contactarnos a traves de WhatsApp al numero proporcionado en la plataforma.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ═══ 14. SUCURSAL SELECTOR MODAL ═══ */}
       {showSedeModal && (
